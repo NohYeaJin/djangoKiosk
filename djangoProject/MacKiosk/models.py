@@ -5,7 +5,7 @@ from django.db import models
 
 class Menus(models.Model):
 
-    MenuName = models.CharField('MenuName')
+    MenuName = models.CharField('MenuName',max_length=50)
     MenuPrice = models.IntegerField('MenuPrice')
 
     def __str__(self):

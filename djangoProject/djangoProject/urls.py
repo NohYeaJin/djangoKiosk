@@ -13,19 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django import urls
 from django.contrib import admin
 from django.urls import path
 
-from djangoProject import view
-from django.conf import settings
-from django.conf.urls.static import static
-
-
+from djangoProject.MacKiosk import view
 
 urlpatterns = [
     path('', view.index, name='index'),
     path('admin/', admin.site.urls),
-    path('kiosk/menus', view.menuSelect, name='menuSelect')
+    path('kiosk/menus', view.menuSelect, name='menuSelect'),
+
 ]
 
