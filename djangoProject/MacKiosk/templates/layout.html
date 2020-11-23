@@ -1,0 +1,38 @@
+﻿﻿{%  load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>외대 맛집 검색</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body style="font-size: 10px; text-align: center;">
+    <!--상단 메뉴-->
+    <div class="w3-top w3-bar w3-white w3-wide w3-padding w3-card">
+        <h1><a href="/">외대 맛집 검색</br></a></h1>
+        <div>
+            <a href="/hufsfood/recommend">맛집 추천 검색</br></a>
+        </div>
+    </div>
+    <!--상단 메뉴-->
+    <!--본문-->
+    <div>
+        <div style="margin:30px">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <!--본문-->
+    <!--하단풋터-->
+    <div class="w3-bottom w3-bar w3-white w3-wide w3-padding w3-card">
+        <footer style="background-color: hsl(0, 0%, 94%);
+            padding: 10px;
+            text-align: center;
+            color: black;">
+            &copy; 화456 데이터베이스 Made By. 최종윤 이수빈 이유진 노예진
+        </footer>
+    </div>
+    <!--하단풋터-->
+</body>
+</html>

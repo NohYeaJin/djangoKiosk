@@ -19,6 +19,15 @@ li {
 nav {
   text-align: center;
 }
+body {
+  text-align: center;
+}
+.title {
+  margin: 70px;
+  font-size: 40px;
+  margin-top: 40px;
+}
+
 .btn {
   margin-left: 3%;
   margin-top: 2%;
@@ -32,29 +41,7 @@ button {
   font-size: 60px;
   padding-bottom: 25px;
 }
-ul.menu_list {
-  font-size: 20px;
-  display: block;
-  padding-bottom: 5%;
-  padding-right: 1%;
-  padding-left: 1%;
-  text-align: center;
-}
-ul.menu_list > li {
-  display: inline-block;
-  margin: 1.5%;
-  padding: 2% 2% 2% 2%;
-  border-width: 10px;
-  border-style: solid;
-  border-color: orange;
-  border-radius: 10%;
-}
-ul.menu_list > li > .menu_name {
-  display: block;
-  background-color: orange;
-  height: 70px;
-  font-size: 30px;
-}
+
 .basket {
   background-color: #e8641e;
   height: 130px;
@@ -66,8 +53,4 @@ ul.menu_list > li > .menu_name {
 a {
   color: white;
   text-align: center;
-}
-img {
-  height: 380px;
-  width: 450px;
 }

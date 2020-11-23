@@ -1,0 +1,72 @@
+{% extends 'hufsfood/layout.html' %}
+{% block content %}
+<table class="w3-table w3-bordered">
+    <tr>
+        <th>음식점이름</th>
+        <th>종류</th>
+    </tr>
+        {% for restaurant in restaurants %}
+    <tr>
+        <td>{{restaurant.name}}</td>
+        <td>{{restaurant.kind}}</td>
+        <td>{{restaurant.cost}}</td>
+        <td>{{restaurant.dist}}<p>분</p></td>
+        <td>{{restaurant.rate}}<p>/5.0 점</p></td>
+
+        {% if restaurant.optime == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.optime}}</td>
+        {% endif %}
+
+        {% if restaurant.cltime == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.cltime}}</td>
+        {% endif %}
+
+        {% if restaurant.brstr == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.brstr}}</td>
+        {% endif %}
+
+        {% if restaurant.brend == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.brend}}</td>
+        {% endif %}
+
+        {% if restaurant.tel == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.tel}}</td>
+        {% endif %}
+
+        {% if restaurant.alone == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.alone}}</td>
+        {% endif %}
+
+        {% if restaurant.team == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.team}}</td>
+        {% endif %}
+
+        {% if restaurant.parking == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td>{{restaurant.parking}}</td>
+        {% endif %}
+
+        {% if restaurant.map == None %}
+        <td>정보 없음</td>
+        {% else %}
+        <td> <a href="{{restaurant.map}}">지도 보기(클릭)</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

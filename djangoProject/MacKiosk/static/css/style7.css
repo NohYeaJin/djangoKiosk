@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+banner.p {
+  font-size: 50px;
+}
+p {
+  font-size: 50px;
+}
+ul,
+li {
+  list-style: none;
+}
+.banner {
+  background-color: red;
+  height: 100px;
+}
+nav {
+  text-align: center;
+}
+body {
+  text-align: center;
+}
+.main {
+  margin: 5%;
+}
+.title {
+  font-size: 40px;
+  margin-top: 2%;
+}
+.number {
+  font-size: 170px;
+}
+
+.back {
+  margin: 5%;
+}
+a {
+  color: red;
+  text-align: center;
+  font-size: 30px;
+}

@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+banner.p {
+  font-size: 50px;
+}
+p {
+  font-size: 50px;
+}
+
+ul,
+li {
+  list-style: none;
+}
+.banner {
+  background-color: red;
+  height: 130px;
+}
+img {
+  width: 400px;
+  height: 260px;
+}
+.menu {
+  width: 400px;
+  font-size: 30px;
+  display: block;
+  padding: 30px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: orange;
+  border-radius: 10%;
+  text-align: center;
+  height: 360px;
+  float: left;
+}
+
+.triangle {
+  height: 70px;
+  width: 70px;
+}
+
+.count {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.select {
+  display: inline-flexbox;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.arrows {
+  margin-left: 10%;
+  float: left;
+  margin-top: 6%;
+}
+
+.menu_name {
+  display: block;
+  background-color: #e6e6e6;
+  height: 90px;
+}
+.price {
+  size: 12px;
+}
+.button_1 {
+  margin-left: 10%;
+  padding-top: 10%;
+  padding-left: 2%;
+  float: left;
+  width: 200px;
+}
+button {
+  font-size: 20px;
+  width: 200px;
+  height: 40px;
+  margin-top: 30px;
+}
+.basket {
+  background-color: green;
+  height: 130px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

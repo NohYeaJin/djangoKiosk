@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>맥도날드 키오스크</title>
+    <link rel="stylesheet" href="style4.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <script>
+    $(function(){
+      $('#decreaseQuantity').click(function(e){
+        e.preventDefault();
+        var stat = $('#numberUpDown').text();
+        var stat2 = $('#total_price').text();
+
+        var num = parseInt(stat,10);
+        var price = parseInt(stat2,10);
+
+        num--;
+        price = price - 6700;
+          $('#numberUpDown').text(num);
+          $('#total_price').text(price);
+          });
+      $('#increaseQuantity').click(function(e){
+            e.preventDefault();
+            var stat = $('#numberUpDown').text();
+            var stat2 = $('#total_price').text();
+
+            var num = parseInt(stat,10);
+
+            var price = parseInt(stat2,10);
+
+            num++;
+            price = price + 6700;
+            $('#numberUpDown').text(num);
+            $('#total_price').text("Total: "+price);
+            });
+    });
+    </script>
+  </head>
+  <body>
+    <div class="banner">
+      <p>로고나 브랜드명</p>
+    </div>
+    <div class="select">
+        <li class="menu">
+            <div class="photo">
+                <img src="double cheese set.png" />
+            </div>
+            <div class="menu_name">
+                <a clas="menu_name">더블 치즈 버거 세트</a>
+                <div class="price" id="increasePrice" >6700원</div>
+            </div>
+        </li>
+        <li class="arrows">
+            <img class="triangle" src="triangle-up.png" id="increaseQuantity">
+            <span class="count" id="numberUpDown">
+                0
+            </span>
+            <img class="triangle" src="triangle-down.png" id="decreaseQuantity">
+        </li>
+        <li class="button_1">
+            <button>장바구니 추가</button>
+            <button>취소</button>
+        </li>
+    </div>
+
+    <div class="basket">
+      <p id="total_price">0</p>
+    </div>
+  </body>
+</html>
