@@ -9,6 +9,13 @@ def menuSelect(request):
     return render(request, 'index.html')
 
 
+def howmany(request):
+    return render(request, 'howmany.html')
+
+def selectPay(request):
+    return render(request,'index3.html')
+
+
 #메뉴선택화면으로
 def toMenu(request):
     return render(request, 'menu.html')
@@ -19,7 +26,7 @@ def addCart(request):
 
 #장바구니로 가기
 def toCart(request):
-    return render(request, 'cart.html')
+    return render(request, 'basket.html')
 
 #초기화 후 첫 화면
 def reset(request):

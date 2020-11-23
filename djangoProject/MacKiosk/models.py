@@ -5,16 +5,16 @@ from django.db import models
 #메뉴(판매자쪽 앱으로 보내는건 어떨까)
 class Menus(models.Model):
 
-    name = models.CharField('MenuName', max_length=50, primary_key=True)
-    price = models.IntegerField('MenuPrice')
-    image = models.ImageField(upload_to='djangoProject/MacKiosk/static/images/')
+    MenuName = models.CharField('MenuName', max_length=50, primary_key=True)
+    MenuPrice = models.IntegerField('MenuPrice')
+    #image = models.ImageField(upload_to='djangoProject/MacKiosk/static/images/')
 
     def __str__(self):
-        return self.name
+        return [self.MenuName, self.MenuPrice]
 
-    #class Meta:
-    #    managed = False
-    #    db_table = 'menus'
+    class Meta:
+        managed = False
+        db_table = 'menus'
 
 #장바구니
 class Cart(models.Model):
@@ -33,12 +33,14 @@ class Cart(models.Model):
 #주문현황(판매자쪽 앱)
 class Orders(models.Model):
 
+    OrderNum = models.IntegerField('OrderNum',primary_key=True)
     OrderQty = models.IntegerField('OrderQty')
     OrderMenu = models.CharField('OrderMenu', max_length=50)
-    OrderDate = models.DateTimeField('OrderDate')
+    OrderDate = models.DateField('OrderDate')
 
     def __str__(self):
-        return str(self.id)
+        return [self.OrderNum, self.OrderQty,self.OrderMenu,self.OrderDate]
+
 
     def get_order_num(self):
         return self.OrderNum
@@ -52,9 +54,9 @@ class Orders(models.Model):
     def get_order_date(self):
         return self.OrderDate
 
-    #class Meta:
-     #   managed = False
-      #  db_table = 'orders'
+    class Meta:
+     managed = False
+     db_table = 'orders'
 
 #재고(판매자쪽 앱)
 class Inventory(models.Model):

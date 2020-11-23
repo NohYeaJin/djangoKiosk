@@ -22,6 +22,8 @@ urlpatterns = [
     path('', view.index, name='index'),
     path('admin/', admin.site.urls),
     path('kiosk/menus', view.menuSelect, name='menuSelect'),
-
+    path('kiosk/howmany', view.howmany, name='howmany'),
+    path('kiosk/basket', view.toCart, name='toCart'),
+    path('kiosk/selectPay', view.selectPay, name='selectPay'),
 ]
 

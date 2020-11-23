@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>맥도날드 키오스크</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -27,66 +29,66 @@
         <li><a href="#">음료</a></li>
       </ul>
     </nav>
-    <div id=div_01>
+
     <div class="menu">
       <ul class="menu_list" id="menuList">
         <li>
           <div class="photo">
-            <img src="double cheese set.png" />
+            <img src="{% static 'images/double cheese set.png' %}" />
           </div>
           <div class="menu_name">
-            <a href="howmany.html" clas="menu_name">더블 치즈 버거 세트</a>
-            <div class="price">\ 6700<div>
+            <a href="howmany" clas="menu_name">더블 치즈 버거 세트</a>
+            <div class="price">\ 6700</div>
           </div>
         </li>
         <li>
           <div class="photo">
-            <img src="cheese burger set.png" />
+            <img src="{% static 'images/cheese burger set.png' %}" />
           </div>
           <div class="menu_name">
-            <a href="howmany.html" clas="menu_name">치즈 버거 세트</a>
+            <a href="howmany" clas="menu_name">치즈 버거 세트</a>
             <div class="price">\ 5500</div>
           </div>
         </li>
         <li>
           <div class="photo">
-            <img src="bulgogi set.png" />
+            <img src="{% static 'images/bulgogi set.png' %}" />
           </div>
           <div class="menu_name">
-            <a href="howmany.html" clas="menu_name">불고기 버거 세트</a>
+            <a href="howmany" clas="menu_name">불고기 버거 세트</a>
             <div class="price">\ 4900</div>
           </div>
         </li>
         <li>
           <div class="photo">
-            <img src="shbe set.png" />
+            <img src="{% static 'images/shbe set.png' %}" />
           </div>
           <div class="menu_name">
-            <a href="howmany.html" clas="menu_name">슈비 버거 세트</a>
+            <a href="howmany" clas="menu_name">슈비 버거 세트</a>
             <div class="price">\ 8000</div>
           </div>
         </li>
         <li>
           <div class="photo">
-            <img src="susu set.png" />
+            <img src="{% static 'images/susu set.png' %}" />
           </div>
           <div class="menu_name">
-            <a href="howmany.html" clas="menu_name">슈슈 버거 세트</a>
+            <a href="howmany" clas="menu_name">슈슈 버거 세트</a>
             <div class="price">\ 6500</div>
           </div>
         </li>
         <li>
           <div class="photo">
-            <img src="bacon tomato set.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
-            <a href="howmany.html" clas="menu_name">베이컨 토마토 디럭스 세트</a>
+            <a href="howmany" clas="menu_name">베이컨 토마토 디럭스 세트</a>
             <div class="price">\ 7800</div>
           </div>
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -94,7 +96,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -102,83 +104,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="menu hidden">
-      <ul class="menu_list" id="menuList">
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
-          </div>
-          <div class="menu_name">
-            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
-          </div>
-        </li>
-        <li>
-          <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -190,7 +116,7 @@
       <ul class="menu_list" id="menuList">
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -198,7 +124,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -206,7 +132,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -214,7 +140,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -222,7 +148,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -230,7 +156,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src={% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -238,7 +164,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -246,7 +172,7 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -254,7 +180,83 @@
         </li>
         <li>
           <div class="photo">
-            <img src="1583727633823.png" />
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="menu hidden">
+      <ul class="menu_list" id="menuList">
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
+          </div>
+          <div class="menu_name">
+            <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
+          </div>
+        </li>
+        <li>
+          <div class="photo">
+            <img src="{% static 'images/bacon tomato set.png' %}" />
           </div>
           <div class="menu_name">
             <a href="#" clas="menu_name">맥치킨 모짜렐라</a>
@@ -418,8 +420,7 @@
     <div class="basket">
       <p>Total: \0</p>
       <button>초기화</button>
-      <div class="title">장바구니</div>
-
+        <div class="title"><a href="basket">장바구니</a></div>
     </div>
   </body>
 </html>

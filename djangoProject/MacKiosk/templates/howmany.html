@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{%  load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>맥도날드 키오스크</title>
-    <link rel="stylesheet" href="style4.css" />
+    <link rel="stylesheet" href="{% static 'css/style4.css' %}" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -51,7 +52,7 @@
     <div class="select">
         <li class="menu">
             <div class="photo">
-                <img src="double cheese set.png" />
+                <img src="{% static 'images/double cheese set.png' %}" />
             </div>
             <div class="menu_name">
                 <a clas="menu_name">더블 치즈 버거 세트</a>
@@ -59,15 +60,15 @@
             </div>
         </li>
         <li class="arrows">
-            <img class="triangle" src="triangle-up.png" id="increaseQuantity">
+            <img class="triangle" src="{% static 'images/triangle-up.png' %}" id="increaseQuantity">
             <span class="count" id="numberUpDown">
                 0
             </span>
-            <img class="triangle" src="triangle-down.png" id="decreaseQuantity">
+            <img class="triangle" src="{% static 'images/triangle-down.png' %}" id="decreaseQuantity">
         </li>
         <li class="button_1">
-            <button>장바구니 추가</button>
-            <button>취소</button>
+            <button type="button" onclick="location.href='menus'">장바구니 추가</button>
+            <button type="button" onclick="location.href='menus'">취소</button>
         </li>
     </div>
 
