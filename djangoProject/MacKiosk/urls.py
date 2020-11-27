@@ -14,15 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import *
+from .view import *
 
 app_name = 'MacKiosk'
 
 urlpatterns = [
     path('', index, name='index'),
-    path('kiosk/menus/', menuSelect, name='menuSelect'),
+    path('kiosk/menus', menuSelect, name='menuSelect'),
+    path('kiosk/howmany', howmany, name='howmany'),
+    path('kiosk/selectPay',selectPay, name='selectPay'),
+    path('kiosk/basket',basket, name='basket'),
+    ]
+'''
+    path('kiosk/basket', toCart, name='toCart'),
     path('kiosk/quantity/', quantitySelect, name='quantitySelect'),
     path('kiosk/addCart/', addCart, name='addCart'),
+
     path('kiosk/toCart/', toCart.as_view(), name='toCart'),
     path('kiosk/payment/', payment, name='payment'),
     path('kiosk/reset/', reset, name='reset'),
@@ -40,4 +47,4 @@ urlpatterns = [
     path('seller/orderIngrd/', orderIngrd, name='orderIngrd'),
     path('seller/srchIngrd/', srchIngrd.as_view(), name='srchIngrd'),
     path('seller/srchTerm/', srchTerm.as_view(), name='srchTerm'),
-]
+'''

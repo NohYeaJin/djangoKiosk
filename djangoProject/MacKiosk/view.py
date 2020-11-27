@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.core.urlresolvers import reverse_lazy
 
-from mc.models import *
+
+from .models import *
 
 from datetime import datetime, timedelta
 from random import *
@@ -26,7 +26,10 @@ def howmany(request):
 def selectPay(request):
     return render(request,'index3.html')
 
+def basket(request):
+    return render(request,'basket.html')
 
+'''
 #메뉴선택화면으로
 def toMenu(request):
     return render(request, 'menu.html')
@@ -176,3 +179,4 @@ class srchTerm(ListView):
 #판매자 메인 화면으로 가기
 def returnMain(request):
     return render(request, '판매자 메인 페이지')
+'''

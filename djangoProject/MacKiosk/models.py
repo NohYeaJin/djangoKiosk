@@ -68,11 +68,11 @@ class Inventory(models.Model):
     exprtdate = models.DateTimeField('ExprtDate')
 
     def __str__(self):
-        return self.name
+        return [self.name,self.qty,self.price,self.origin,self.exprdate]
 
-    #class Meta:
-     #   managed = False
-      #  db_table = 'inventory'
+    class Meta:
+     managed = False
+     db_table = 'inventory'
 
 #매출(판매자쪽 앱)
 class Revenue(models.Model):
