@@ -24,6 +24,9 @@ urlpatterns = [
     path('kiosk/howmany', howmany, name='howmany'),
     path('kiosk/selectPay',selectPay, name='selectPay'),
     path('kiosk/basket',basket, name='basket'),
+    path('kiosk/inputcash',inputcash,name='inputcash'),
+    path('kiosk/inputcard',inputcash,name='inputcard'),
+    path('kiosk/complete',complete,name='complete'),
     ]
 '''
     path('kiosk/basket', toCart, name='toCart'),

@@ -29,6 +29,17 @@ def selectPay(request):
 def basket(request):
     return render(request,'basket.html')
 
+def inputcash(request):
+    return render(request,'inputcash.html')
+
+def inputcard(request):
+    return render(request,'inputcard.html')
+
+def complete(request):
+    return render(request,'complete.html')
+
+
+
 '''
 #메뉴선택화면으로
 def toMenu(request):

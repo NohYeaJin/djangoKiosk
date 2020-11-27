@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>맥도날드 키오스크</title>
-    <link rel="stylesheet" href="style7.css" />
+    <link rel="stylesheet" href="{% static 'css/style7.css' %}" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -28,6 +29,6 @@
         </div>
         <div class="title">입니다.</div>
     </div>
-    <div class="back"><a href="index.html">메인화면으로 돌아가기</a></div>
+    <div class="back"><a href="menus">메인화면으로 돌아가기</a></div>
   </body>
 </html>
