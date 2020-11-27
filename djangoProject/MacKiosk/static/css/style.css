@@ -75,3 +75,19 @@ ul.menu_list > li > .menu_name {
   left: 0;
   right: 0;
 }
+.basket p{
+  float: left;
+}
+button{
+  margin-right: 30px;
+  margin-top: 30px;
+  float: right;
+  width: 120px;
+  height: 60px;
+}
+.title{
+  margin-top: 30px;
+  margin-right: 20px;
+  float: right;
+  font-size: 35px;
+}
