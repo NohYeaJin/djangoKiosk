@@ -14,16 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from djangoProject.MacKiosk import view
+from django.urls import path, include
 
 urlpatterns = [
-    path('', view.index, name='index'),
     path('admin/', admin.site.urls),
-    path('kiosk/menus', view.menuSelect, name='menuSelect'),
-    path('kiosk/howmany', view.howmany, name='howmany'),
-    path('kiosk/basket', view.toCart, name='toCart'),
-    path('kiosk/selectPay', view.selectPay, name='selectPay'),
+    path('', include('MacKiosk.urls')),
 ]
 
