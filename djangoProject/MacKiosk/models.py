@@ -26,9 +26,9 @@ class Cart(models.Model):
     def __str__(self):
         return self.name
 
-    #class Meta:
-     #   managed = False
-      #  db_table = 'cart'
+    class Meta:
+      managed = False
+      db_table = 'cart'
 
 #주문현황(판매자쪽 앱)
 class Orders(models.Model):
@@ -87,9 +87,9 @@ class Revenue(models.Model):
     def __str__(self):
         return self.salesdate
 
-    #class Meta:
-     #   managed = False
-      #  db_table = 'revenue'
+    class Meta:
+     managed = False
+     db_table = 'revenue'
 
 #고객 호출 번호
 class CallCustomer(models.Model):

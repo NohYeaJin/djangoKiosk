@@ -8,35 +8,38 @@ banner.p {
 p {
   font-size: 50px;
 }
-ul,
-li {
-  list-style: none;
-}
+
 .banner {
-  background-color: green;
+  background-color: red;
   height: 100px;
 }
-nav {
+.tab {
   text-align: center;
+}
+.menu {
+  display: None;
+}
+ul.category li.current{
+  background-color: orange;
 }
 ul.category {
   margin-left: 500px;
   margin-right: 500px;
+  list-style: None;
+}
+.menu.current {
+  display: inherit;
 }
 ul.category > li {
+  display: inline-block;
+  cursor: pointer;
   font-size: 30px;
   float: left;
   padding: 0 30px 0 30px;
   line-height: 70px;
-  background-color: #ffbc0d;
+  background-color: #EEBF53;
   border-style: solid;
   border-color: orange;
-}
-ul.category > li > a {
-  text-decoration: none;
-}
-
-ul.category > li > a.burger {
   text-decoration: none;
 }
 
@@ -56,7 +59,7 @@ ul.menu_list > li {
 
   border-style: solid;
   border-width: 5px;
-  border-color: green;
+  border-color: orange;
   border-radius: 10%;
 }
 ul.menu_list > li > .menu_name {
@@ -65,7 +68,7 @@ ul.menu_list > li > .menu_name {
   height: 50px;
 }
 .basket {
-  background-color: #e8641e;
+  background-color: green;
   height: 130px;
   position: fixed;
   bottom: 0;
