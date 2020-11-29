@@ -12,11 +12,15 @@ from datetime import datetime, timedelta
 from random import *
 
 
-def index(request, show='default'):
+
+
+def index(request):
     return render(request, 'index2.html')
 
 
-def menuSelect(request):
+def menuSelect(request, show='default'):
+    c_qs = Cart.objects.all()
+    c_qs.delete()
     return render(request, 'index.html')
 
 
@@ -35,10 +39,34 @@ def inputcash(request):
 def inputcard(request):
     return render(request,'inputcard.html')
 
+
+
+
+
+def showOrderNum(request, cus_num):
+    o_qs = Orders.objects.get(OrderNum=cus_num)
+    context = {'o_qs': o_qs}    #{{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
+    return render(request, 'complete.html', context)
+
 def complete(request):
-    return render(request,'complete.html')
+    #Cart의 주문 정보를 Order로 옮김
+    c_qs = Cart.objects.all()
+    num = Orders.objects.last().OrderNum
+    num = num + 100
+    for i in c_qs:
 
+        o_qs = Orders(OrderMenu=i.CartMenu, OrderQty=i.CartQty, OrderDate=datetime.today(),OrderNum=num,
+                      OrderPrice=i.CartPrice)
+        o_qs.save()
 
+    #o_qs = Orders(OrderNum=cus_num, OrderQty=c_qs.CartQty, OrderMenu=c_qs.CartMenu, OrderDate=datetime.today(), OrderPrice=c_qs.CartPrice)
+    o_qs = Orders.objects.last()
+    context = {'o_qs': o_qs}  # {{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
+    return render(request, 'complete.html', context)
+    #문제점: 한 고객이 여러 메뉴를 동시에 주문하는 경우
+    #최선책: 주문번호/날짜/주문금액 한개에 메뉴/수량 정보는 개수 제한 없이 입력 가능
+    #차선책: 고객의 주문 메뉴 개수 대로 여러 개의 쿼리문 생성
+    #주문완료, 주문취소에서도 동일 문제 발생
 
 '''
 #메뉴선택화면으로
@@ -58,12 +86,9 @@ def addCart(request, Mname):    #선택한 메뉴 이름 기준
 
     return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
 
-#장바구니로 가기
-class toCart(ListView): #클래스형 뷰
-    Model = Cart
-    template_name = '장바구니.html'
 
-#초기화 후 첫 화면
+
+
 def reset(request):
     #장바구니 삭제
     c_qs = Cart.objects.all()
@@ -104,22 +129,6 @@ def pay(request, arg):
         #arg를 DB에 보내고
         return render(request, 'cashpay.html')
 
-def complete(request):
-    #Cart의 주문 정보를 Order로 옮김
-    c_qs = Cart.objects.get()
-    cus_num = randint(1, 1000)  #주문번호 랜덤생성
-    o_qs = Orders(OrderNum=cus_num, OrderQty=c_qs.qty, OrderMenu=c_qs.name, OrderDate=datetime.today(), OrderPrice=c_qs.price)
-    o_qs.save()
-    return HttpResponseRedirect(reverse('MacKiosk:showOrderNum'))
-    #문제점: 한 고객이 여러 메뉴를 동시에 주문하는 경우
-    #최선책: 주문번호/날짜/주문금액 한개에 메뉴/수량 정보는 개수 제한 없이 입력 가능
-    #차선책: 고객의 주문 메뉴 개수 대로 여러 개의 쿼리문 생성
-    #주문완료, 주문취소에서도 동일 문제 발생
-
-def showOrderNum(request, cus_num):
-    o_qs = Orders.objects.get(OrderNum=cus_num)
-    context = {'o_qs': o_qs}    #{{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
-    return render(request, 'complete.html', context)
 
 #################################################
 #판매자쪽 view

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>맥도날드 키오스크</title>
-    <link rel="stylesheet" href="{% static 'css/style4.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style4.css' %}?ver=2" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -15,16 +15,18 @@
     />
     <script>
     $(function(){
+        var stat3 = $('#increasePrice').text();
+        var ProductPrice = parseInt(stat3,10);
       $('#decreaseQuantity').click(function(e){
         e.preventDefault();
-        var stat = $('#numberUpDown').text();
-        var stat2 = $('#total_price').text();
+          var stat = $('#numberUpDown').text();
+          var stat2 = $('#total_price').text();
 
-        var num = parseInt(stat,10);
-        var price = parseInt(stat2,10);
+          var num = parseInt(stat,10);
+          var price = parseInt(stat2,10);
 
-        num--;
-        price = price - 6700;
+          num--;
+          price = price - ProductPrice
           $('#numberUpDown').text(num);
           $('#total_price').text(price);
           });
@@ -38,9 +40,9 @@
             var price = parseInt(stat2,10);
 
             num++;
-            price = price + 6700;
+            price = price + ProductPrice
             $('#numberUpDown').text(num);
-            $('#total_price').text("Total: "+price);
+            $('#total_price').text(price);
             });
     });
     </script>
@@ -73,7 +75,9 @@
     </div>
 
     <div class="basket">
+      <div class="total">Total:  </div>
       <p id="total_price">0</p>
+      <div class="won"> 원</div>
     </div>
   </body>
 </html>

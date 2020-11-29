@@ -19,9 +19,9 @@ class Menus(models.Model):
 #장바구니
 class Cart(models.Model):
 
-    name = models.CharField('CartMenu', max_length=50, primary_key=True)
-    qty = models.IntegerField('CartQty')
-    price = models.IntegerField('CartPrice')
+    CartMenu = models.CharField('CartMenu', max_length=50,primary_key=True)
+    CartQty = models.IntegerField('CartQty')
+    CartPrice = models.IntegerField('CartPrice')
 
     def __str__(self):
         return self.name
@@ -33,10 +33,11 @@ class Cart(models.Model):
 #주문현황(판매자쪽 앱)
 class Orders(models.Model):
 
-    OrderNum = models.IntegerField('OrderNum',primary_key=True)
+    OrderNum = models.IntegerField('OrderNum')
     OrderQty = models.IntegerField('OrderQty')
-    OrderMenu = models.CharField('OrderMenu', max_length=50)
+    OrderMenu = models.CharField('OrderMenu', max_length=50,primary_key=True)
     OrderDate = models.DateField('OrderDate')
+    OrderPrice = models.IntegerField('OrderPrice')
 
     def __str__(self):
         return [self.OrderNum, self.OrderQty,self.OrderMenu,self.OrderDate]

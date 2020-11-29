@@ -94,3 +94,16 @@ button {
   left: 0;
   right: 0;
 }
+.basket .total {
+  font-size: 45px;
+  float: left;
+}
+.basket p {
+  font-size: 45px;
+  float: left;
+  text-align: right;
+}
+.basket .won {
+  font-size: 45px;
+  float: left;
+}
