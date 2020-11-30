@@ -8,6 +8,7 @@ class Menus(models.Model):
     MenuName = models.CharField('MenuName', max_length=50, primary_key=True)
     MenuPrice = models.IntegerField('MenuPrice')
     #image = models.ImageField(upload_to='djangoProject/MacKiosk/static/images/')
+    image = models.ImageField(upload_to='MacKiosk/static/images/', default=None)
 
     def __str__(self):
         return [self.MenuName, self.MenuPrice]

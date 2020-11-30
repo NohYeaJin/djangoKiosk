@@ -24,8 +24,11 @@ def menuSelect(request, show='default'):
     return render(request, 'index.html')
 
 
-def howmany(request):
-    return render(request, 'howmany.html')
+def howmany(request, menu_id):
+    temp = Menus.objects.get(id=menu_id)
+    context = {'menu': temp}
+    return render(request, 'howmany.html', context)
+
 
 def selectPay(request):
     return render(request,'index3.html')

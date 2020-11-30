@@ -21,7 +21,7 @@ app_name = 'MacKiosk'
 urlpatterns = [
     path('', index, name='index'),
     path('kiosk/menus', menuSelect, name='menuSelect'),
-    path('kiosk/howmany', howmany, name='howmany'),
+    path('kiosk/howmany/<int:menu_id>', howmany, name='howmany'),
     path('kiosk/selectPay',selectPay, name='selectPay'),
     path('kiosk/basket',basket, name='basket'),
     path('kiosk/inputcash',inputcash,name='inputcash'),
@@ -32,6 +32,9 @@ urlpatterns = [
     path('seller/orderList/', orderList.as_view(), name='orderList'),
     path('seller/callList/', callList.as_view(), name='callList'),
     ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 '''
     path('kiosk/basket', toCart, name='toCart'),
     path('kiosk/quantity/', quantitySelect, name='quantitySelect'),

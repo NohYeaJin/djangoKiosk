@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>맥도날드 키오스크</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=2" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+      <script>
+    $(document).ready(function(){
+	    $('ul.category li').click(function(){
+		    var tab_id = $(this).attr('data-tab');
+
+		    $('ul.category li').removeClass('current');
+		    $('.menu').removeClass('current');
+
+		    $(this).addClass('current');
+		    $("#"+tab_id).addClass('current');
+	})
+
+})
+      </script>
+  </head>
+  <body>
+    <div class="banner">
+      <p>로고나 브랜드명</p>
+    </div>
+      <div class="tab">
+        <ul class="category">
+            <li data-tab="tab-1" class="tab-link current">세트메뉴</li>
+            <li data-tab="tab-2" class="tab-link">단품</li>
+            <li data-tab="tab-3" class="tab-link">사이드</li>
+            <li data-tab="tab-4" class="tab-link">디저트</li>
+            <li data-tab="tab-5" class="tab-link">음료</li>
+        </ul>
+            <div class="menu current" id="tab-1">
+        <ul class="menu_list" id="menuList1">
+            {% for menu in menu %}
+            <li>
+              <div class="photo">
+                <img src="{{menu.image.url}}" alt = "Nothing">
+              </div>
+              <div class="menu_name">
+                <a href="howmany/{{ menu.pk }}" clas="menu_name">{{menu.MenuName}}</a>
+                <div class="price">\ {{menu.MenuPrice}}</div>
+              </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="menu" id="tab-2">
+      <ul class="menu_list" id="menuList2">
+      </ul>
+    </div>
+    <div class="menu" id="tab-3">
+            <ul class="menu_list" id="menuList3">
+
+      </ul>
+    </div>
+    <div class="menu" id="tab-4">
+            <ul class="menu_list" id="menuList4">
+
+      </ul>
+    </div>
+    <div class="menu" id="tab-5">
+            <ul class="menu_list" id="menuList5">
+
+      </ul>
+    </div>
+    </div>
+    <div class="basket">
+      <p>Total: \0</p>
+      <button>초기화</button>
+        <div class="title"><a href="basket">장바구니</a></div>
+    </div>
+  </body>
+</html>
