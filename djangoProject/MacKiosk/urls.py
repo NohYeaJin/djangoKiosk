@@ -29,6 +29,8 @@ urlpatterns = [
     path('kiosk/complete',complete,name='complete'),
     path('kiosk/reset/', reset, name='reset'),
     path('kiosk/<int:pk>/cancelMenu/', cancelMenu, name='cancelMenu'),
+    path('seller/orderList/', orderList.as_view(), name='orderList'),
+    path('seller/callList/', callList.as_view(), name='callList'),
     ]
 '''
     path('kiosk/basket', toCart, name='toCart'),
