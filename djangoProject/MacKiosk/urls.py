@@ -27,8 +27,8 @@ urlpatterns = [
     path('kiosk/inputcash',inputcash,name='inputcash'),
     path('kiosk/inputcard',inputcash,name='inputcard'),
     path('kiosk/complete',complete,name='complete'),
-    path('seller/orderList/', orderList.as_view(), name='orderList'),
-    path('seller/callList/', callList.as_view(), name='callList'),
+    path('kiosk/reset/', reset, name='reset'),
+    path('kiosk/<int:pk>/cancelMenu/', cancelMenu, name='cancelMenu'),
     ]
 '''
     path('kiosk/basket', toCart, name='toCart'),
@@ -37,9 +37,7 @@ urlpatterns = [
 
     path('kiosk/toCart/', toCart.as_view(), name='toCart'),
     path('kiosk/payment/', payment, name='payment'),
-    path('kiosk/reset/', reset, name='reset'),
     path('kiosk/chQty/', chQty, name='chQty'),
-    path('kiosk/cancleMenu/', cancelMenu, name='cancleMenu'),
     path('kiosk/complete/', complete, name='complete'),
     path('kiosk/showOrderNum/', showOrderNum, name='showOrderNum'),
 

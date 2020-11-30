@@ -31,7 +31,9 @@ def selectPay(request):
     return render(request,'index3.html')
 
 def basket(request):
-    return render(request,'basket.html')
+    c_qs = Cart.objects.all()
+    context = {'cart_list': c_qs}
+    return render(request, 'basket.html', context)
 
 def inputcash(request):
     return render(request,'inputcash.html')
@@ -71,6 +73,20 @@ def complete(request):
     #최선책: 주문번호/날짜/주문금액 한개에 메뉴/수량 정보는 개수 제한 없이 입력 가능
     #차선책: 고객의 주문 메뉴 개수 대로 여러 개의 쿼리문 생성
     #주문완료, 주문취소에서도 동일 문제 발생
+    
+#초기화 후 첫 화면
+def reset(request):
+    #장바구니 삭제
+    c_qs = Cart.objects.all()
+    c_qs.delete()
+    return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
+
+#장바구니에서 메뉴 취소
+def cancelMenu(request, Mname):
+    #Cart DB에서 메뉴 삭제
+    c_qs = Cart.objects.get(name=Mname)
+    c_qs.delete()
+    return HttpResponseRedirect(reverse('MacKiosk:basket'))
 
 '''
 #메뉴선택화면으로
