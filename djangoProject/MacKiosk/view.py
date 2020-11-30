@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-
+from django.views.generic import TemplateView
 
 from .models import *
 
@@ -40,7 +40,11 @@ def inputcard(request):
     return render(request,'inputcard.html')
 
 
+class orderList(TemplateView):
+    template_name='seller_order.html'
 
+class callList(TemplateView):
+    template_name='call_list.html'
 
 
 def showOrderNum(request, cus_num):

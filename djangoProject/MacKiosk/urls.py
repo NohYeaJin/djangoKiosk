@@ -27,6 +27,8 @@ urlpatterns = [
     path('kiosk/inputcash',inputcash,name='inputcash'),
     path('kiosk/inputcard',inputcash,name='inputcard'),
     path('kiosk/complete',complete,name='complete'),
+    path('seller/orderList/', orderList.as_view(), name='orderList'),
+    path('seller/callList/', callList.as_view(), name='callList'),
     ]
 '''
     path('kiosk/basket', toCart, name='toCart'),

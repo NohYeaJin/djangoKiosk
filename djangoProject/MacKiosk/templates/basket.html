@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>맥도날드 키오스크</title>
     <link rel="stylesheet" href="{% static 'css/style5.css' %}" />
     <link
@@ -13,6 +14,42 @@
       crossorigin="anonymous"
     />
     <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	var rowCnt = 0;
+    	var colIdx = 3;	
+    	var colSum = 0;	
+    	
+    	$("#orderedmenu tr").each(function(){
+    		if( rowCnt != 0 ){
+    			var sell = $(this).children("td");
+    			$(sell).each(function(){
+    				var idx = $(this).index();
+    				var val = $(this).text();
+    				
+    				if( idx == colIdx ){
+    					colSum += parseInt(val); 
+    				}
+    			});
+    	  }
+    		
+    		  rowCnt++;
+    	});
+    	
+    	$("#a_sum").text(colSum);
+
+    });
+
+    $(function () {
+        $('#btn-empty').click(function () {
+          $('#orderedmenu > tbody:last').empty();
+        });
+      });
+
+      function rowDel(obj) {
+        var tr = obj.parentNode.parentNode;
+        tr.parentNode.removeChild(tr);
+      }
     </script>
   </head>
   <body>  
@@ -22,39 +59,42 @@
  
     <div class="title">장바구니</div>
     <div class="table">
-        <table>
+        <table id = 'orderedmenu'>
             <th>번호</th>
             <th>메뉴명</th>
             <th>수량</th>
             <th>가격</th>
             <th>취소</th>
+            <tbody></tbody>
             <tr>
                 <td>1</td>
                 <td>빅맥</td>
                 <td>2</td>
-                <td>\9000</td>
-                <td><button>취소</button></td>
+                <td>9000원</td>
+                <td><button onclick='rowDel(this);'>취소</button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>맥너겟 4조각</td>
                 <td>1</td>
-                <td>\1700</td>
-                <td><button>취소</button></td>
+                <td>1700원</td>
+                <td><button onclick='rowDel(this);'>취소</button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>콜라M</td>
                 <td>3</td>
-                <td>\3900</td>
-                <td><button>취소</button></td>
+                <td>3900원</td>
+                <td><button onclick='rowDel(this);'>취소</button></td>
             </tr>
+            </tbody>
         </table>
     </div>
-    <div class="rollback"><a href="#">전체취소</a></div>
+    <div class="rollback"><button id='btn-empty'>전체취소</button></div>
     <div class="basket">
-        
-      <p>Total: \0</p>
+      <div class="total">Total:  </div>
+      <p id="a_sum">0</p>
+      <div class="won"> 원</div>
       <button class="goshopping" type="button" onclick="location.href='menus'">계속 쇼핑하기</button>
       <button class="charge" type="button" onclick="location.href='selectPay'">결제하기</button>
     </div>
