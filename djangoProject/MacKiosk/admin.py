@@ -4,6 +4,15 @@ from .models import Menus
 from .models import Inventory
 
 
-admin.site.register(Orders)
-admin.site.register(Menus)
-admin.site.register(Inventory)
+class menuAdmin (admin.ModelAdmin):
+    list_display = ('MenuName', 'MenuPrice')
+
+class orderAdmin (admin.ModelAdmin):
+    list_display = ('OrderNum', 'OrderQty', 'OrderMenu', 'OrderDate')
+
+class inventoryAdmin (admin.ModelAdmin):
+    list_display = ('name', 'qty', 'price', 'origin', 'exprtdate')
+
+admin.site.register(Orders, orderAdmin)
+admin.site.register(Menus, menuAdmin)
+admin.site.register(Inventory, inventoryAdmin)
