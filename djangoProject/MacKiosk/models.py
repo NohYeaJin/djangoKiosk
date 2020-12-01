@@ -11,7 +11,7 @@ class Menus(models.Model):
     image = models.ImageField(upload_to='MacKiosk/static/images/', default=None)
 
     def __str__(self):
-        return [self.MenuName, self.MenuPrice]
+        return self.MenuName
 
     class Meta:
         managed = False
@@ -41,7 +41,7 @@ class Orders(models.Model):
     OrderPrice = models.IntegerField('OrderPrice')
 
     def __str__(self):
-        return [self.OrderNum, self.OrderQty,self.OrderMenu,self.OrderDate]
+        return self.OrderMenu
 
 
     def get_order_num(self):
@@ -70,7 +70,7 @@ class Inventory(models.Model):
     exprtdate = models.DateTimeField('ExprtDate')
 
     def __str__(self):
-        return [self.name,self.qty,self.price,self.origin,self.exprdate]
+        return self.name
 
     class Meta:
      managed = False
@@ -87,7 +87,7 @@ class Revenue(models.Model):
                                             #리스트로 구현이 어렵기에 그냥 date로 하는 것은 어떨지..
 
     def __str__(self):
-        return self.salesdate
+        return str(self.salesdate)
 
     class Meta:
      managed = False
@@ -99,6 +99,6 @@ class CallCustomer(models.Model):
     orderNum = models.IntegerField('orderNum')
 
     def __str__(self):
-        return self.orderNum
+        return str(self.orderNum)
 
 
