@@ -30,6 +30,7 @@ def howmany(request, menu_id):
     return render(request, 'howmany.html', context)
 
 
+
 def selectPay(request):
     return render(request,'index3.html')
 
@@ -93,6 +94,15 @@ def cancelMenu(request, Mname):
 
 '''
 #메뉴선택화면으로
+
+
+def howmany(request,menu_id):
+   
+    temp = Menus.objects.get(id=menu_id)
+    context = {'menu': temp}
+    return render(request, 'howmany.html', context)
+    
+    
 def toMenu(request):
     return render(request, 'menu.html')
 
