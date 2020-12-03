@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>맥도날드 키오스크</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=2" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+      <script>
+    $(document).ready(function(){
+	    $('ul.category li').click(function(){
+		    var tab_id = $(this).attr('data-tab');
+
+		    $('ul.category li').removeClass('current');
+		    $('.menu').removeClass('current');
+
+		    $(this).addClass('current');
+		    $("#"+tab_id).addClass('current');
+	})
+
+})
+      </script>
+  </head>
+  <body>
+    <div class="banner">
+      <p>로고나 브랜드명</p>
+    </div>
+    <div class="tab">
+        <ul class="category">
+            <li data-tab="tab-1" class="tab-link current">주문관리</li>
+            <li data-tab="tab-2" class="tab-link">재고관리</li>
+            <li data-tab="tab-3" class="tab-link">매출관리</li>
+        </ul>
+    </div>
+    <br><br><br><br><br><br><br><br>
+        <div class="revenue_table" id="tab-3" align="center">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div align="center">
+                    <h3>조회기간 선택</h3>  <!--h1을 사용해도 되고 h2를 사용해도 된다. 본인 마음-->
+
+                    <label><input type="date" name="start"></label> ~   <!--시작 년,도,월,일 선택-->
+
+                    <label><input type="date" name="end"></label>  <!--끝 년,도,월,일 선택-->
+
+                    <input type="submit" value="조회" > <!--버튼 생성-->
+                </div>
+            </form><br>
+        <div>
+            <li>
+                총매출: {{ sales }}
+            </li>
+            <li>
+                총지출: {{ spend }}
+            </li>
+            <li>
+                순이익: {{ profit }}
+            </li>
+        </div><br>
+            <table align="center" text-align="center" border="1" cellpadding="10" cellspacing="5" width="70%">
+                <tr>
+                    <th>날짜</th>
+                    <th>주문번호</th>
+                    <th>내용</th>
+                    <th>매출</th>
+                    <th>지출</th>
+                </tr>
+                {% for revenue in revenues %}
+                    <tr align="center">
+                        <td>{{ revenue.salesdate|date:"o년 m월 j일" }}</td>
+                        <td>{{ revenue.id }}</td>
+                        <td>{{ revenue.content }}</td>
+                        <td>{{ revenue.sales }}</td>
+                        <td>{{ revenue.spend }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+  </body>
+</html>

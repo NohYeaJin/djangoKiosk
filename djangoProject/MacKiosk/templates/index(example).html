@@ -5,6 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>맥도날드 키오스크</title>
+    <style>
+        a {
+          text-decoration: none;
+          color: black;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=2" />
     <link
@@ -39,40 +45,91 @@
             <li data-tab="tab-3" class="tab-link">사이드</li>
             <li data-tab="tab-4" class="tab-link">디저트</li>
             <li data-tab="tab-5" class="tab-link">음료</li>
-        </ul>
-            <div class="menu current" id="tab-1">
+        </ul><br><br><br><br><br>
+    <div class="menu current" id="tab-1">
         <ul class="menu_list" id="menuList1">
-            {% for menu in menu %}
+            {% for set in sets %}
             <li>
+              <a href="howmany/{{ set.pk }}" clas="menu_name">
               <div class="photo">
-                <img src="{{menu.image.url}}" alt = "Nothing">
+                <img src="{{set.image.url}}" alt = "Nothing" style="width:300px; height:250px">
               </div>
               <div class="menu_name">
-                <a href="howmany/{{ menu.pk }}" clas="menu_name">{{menu.MenuName}}</a>
-                <div class="price">\ {{menu.MenuPrice}}</div>
+                {{set.MenuName}}
+                <div class="price">\ {{set.MenuPrice}}</div>
               </div>
+              </a>
             </li>
             {% endfor %}
         </ul>
     </div>
     <div class="menu" id="tab-2">
-      <ul class="menu_list" id="menuList2">
-      </ul>
+        <ul class="menu_list" id="menuList2">
+            {% for single in singles %}
+            <li>
+              <a href="howmany/{{ single.pk }}" clas="menu_name">
+              <div class="photo">
+                <img src="{{single.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+              </div>
+              <div class="menu_name">
+                {{single.MenuName}}
+                <div class="price">\ {{single.MenuPrice}}</div>
+              </div>
+              </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="menu" id="tab-3">
-            <ul class="menu_list" id="menuList3">
-
-      </ul>
+        <ul class="menu_list" id="menuList3">
+            {% for side in sides %}
+            <li>
+              <a href="howmany/{{ side.pk }}" clas="menu_name">
+              <div class="photo">
+                <img src="{{side.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+              </div>
+              <div class="menu_name">
+                {{side.MenuName}}
+                <div class="price">\ {{side.MenuPrice}}</div>
+              </div>
+              </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="menu" id="tab-4">
-            <ul class="menu_list" id="menuList4">
-
-      </ul>
+        <ul class="menu_list" id="menuList4">
+            {% for dessert in desserts %}
+            <li>
+              <a href="howmany/{{ dessert.pk }}" clas="menu_name">
+              <div class="photo">
+                <img src="{{dessert.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+              </div>
+              <div class="menu_name">
+                {{dessert.MenuName}}
+                <div class="price">\ {{dessert.MenuPrice}}</div>
+              </div>
+              </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="menu" id="tab-5">
-            <ul class="menu_list" id="menuList5">
-
-      </ul>
+        <ul class="menu_list" id="menuList4">
+            {% for drink in drinks %}
+            <li>
+              <a href="howmany/{{ drink.pk }}" clas="menu_name">
+              <div class="photo">
+                <img src="{{drink.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+              </div>
+              <div class="menu_name">
+                {{drink.MenuName}}
+                <div class="price">\ {{drink.MenuPrice}}</div>
+              </div>
+              </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     </div>
     <div class="basket">

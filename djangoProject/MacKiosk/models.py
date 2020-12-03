@@ -9,9 +9,17 @@ class Menus(models.Model):
     MenuPrice = models.IntegerField('MenuPrice')
     #image = models.ImageField(upload_to='djangoProject/MacKiosk/static/images/')
     image = models.ImageField(upload_to='MacKiosk/static/images/', default=None)
+    CATEGORIES = {
+        ('single', 'Single'),
+        ('set', 'Set Menu'),
+        ('side', 'Side Menu'),
+        ('drink', 'Drink'),
+        ('dessert', 'Dessert')
+    }
+    category = models.CharField('Category', max_length=30, default='single', choices=CATEGORIES)
 
     def __str__(self):
-        return [self.MenuName, self.MenuPrice]
+        return self.MenuName
 
     class Meta:
         managed = False
@@ -41,7 +49,7 @@ class Orders(models.Model):
     OrderPrice = models.IntegerField('OrderPrice')
 
     def __str__(self):
-        return [self.OrderNum, self.OrderQty,self.OrderMenu,self.OrderDate]
+        return self.OrderMenu
 
 
     def get_order_num(self):
@@ -63,14 +71,15 @@ class Orders(models.Model):
 #재고(판매자쪽 앱)
 class Inventory(models.Model):
 
-    name = models.CharField('IngrdName', max_length=50, primary_key=True)
-    qty = models.IntegerField('IngrdQty')
+    name = models.CharField('IngrdName', max_length=50)
+    qty_base = models.IntegerField('IngrdQtybase')
+    qty_now = models.IntegerField('IngrdQtynow')
     price = models.IntegerField('IngrdPrice')
     origin = models.CharField('IngrdOrigin', max_length=50)
     exprtdate = models.DateTimeField('ExprtDate')
 
     def __str__(self):
-        return [self.name,self.qty,self.price,self.origin,self.exprdate]
+        return self.name
 
     class Meta:
      managed = False
@@ -79,15 +88,17 @@ class Inventory(models.Model):
 #매출(판매자쪽 앱)
 class Revenue(models.Model):
 
-    sales = models.IntegerField('Sales')
-    spend = models.IntegerField('Spend')
-    netprofit = models.IntegerField('NetProfit')
+    id = models.AutoField(primary_key=True)
+    content = models.CharField('Content', max_length=50)
+    sales = models.IntegerField('Sales', blank=True, default=0)
+    spend = models.IntegerField('Spend', blank=True, default=0)
+    #netprofit = models.IntegerField('NetProfit')
     #saleshistory = models.
-    salesdate = models.DateField('SalesDate', primary_key=True) #클래스 다이어그램에는 saleshistory로 쓰려고 했으나..
+    salesdate = models.DateField('SalesDate', default=0000 - 00 - 00) #클래스 다이어그램에는 saleshistory로 쓰려고 했으나..
                                             #리스트로 구현이 어렵기에 그냥 date로 하는 것은 어떨지..
 
     def __str__(self):
-        return self.salesdate
+        return str(self.salesdate)
 
     class Meta:
      managed = False
@@ -99,6 +110,6 @@ class CallCustomer(models.Model):
     orderNum = models.IntegerField('orderNum')
 
     def __str__(self):
-        return self.orderNum
+        return str(self.orderNum)
 
 
