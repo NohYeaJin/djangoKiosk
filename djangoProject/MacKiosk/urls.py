@@ -31,6 +31,9 @@ urlpatterns = [
     path('kiosk/<int:pk>/cancelMenu/', cancelMenu, name='cancelMenu'),
     path('seller/orderList/', orderList.as_view(), name='orderList'),
     path('seller/callList/', callList.as_view(), name='callList'),
+    path('seller/inventory/', inventory, name='inventory'),
+    path('seller/inventory/<int:inven_id>', orderIngrd, name='orderIngrd'),
+    path('seller/revenue/', revenue, name='revenue'),
     ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

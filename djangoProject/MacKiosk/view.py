@@ -21,7 +21,15 @@ def index(request):
 def menuSelect(request, show='default'):
     c_qs = Cart.objects.all()
     c_qs.delete()
-    return render(request, 'index.html')
+
+    single = Menus.objects.filter(category='single')
+    set = Menus.objects.filter(category='set')
+    side = Menus.objects.filter(category='side')
+    drink = Menus.objects.filter(category='drink')
+    dessert = Menus.objects.filter(category='dessert')
+    context = {'singles': single, 'sets': set, 'sides': side, 'drinks': drink, 'desserts': dessert}
+
+    return render(request, 'index(example).html', context)
 
 
 def howmany(request, menu_id):
@@ -90,6 +98,60 @@ def cancelMenu(request, Mname):
     c_qs = Cart.objects.get(name=Mname)
     c_qs.delete()
     return HttpResponseRedirect(reverse('MacKiosk:basket'))
+
+def revenue(request):
+    if request.method == 'GET':
+        temp = Revenue.objects.all()
+
+        sales = 0
+        for i in temp:
+            sales += i.sales
+        spend = 0
+        for i in temp:
+            spend += i.spend
+        profit = sales - spend
+
+        context = {'revenues': temp, 'sales':sales, 'spend':spend, 'profit':profit}
+        return render(request, 'revenue.html', context)
+    elif request.method == 'POST':
+        start = request.POST['start']
+        end = request.POST['end']
+        temp = Revenue.objects.filter(salesdate__in=pd.date_range(start, end))
+
+        sales = 0
+        for i in temp:
+            sales += i.sales
+        spend = 0
+        for i in temp:
+            spend += i.spend
+        profit = sales - spend
+
+        context = {'revenues': temp, 'sales':sales, 'spend':spend, 'profit':profit}
+        return render(request, 'revenue.html', context)
+
+
+def inventory(request):
+    temp = Inventory.objects.all()
+    context = {'inventories': temp}
+    return render(request, 'inventory.html', context)
+
+def orderIngrd(request, inven_id):
+    Ingrd = Inventory.objects.get(id=inven_id)
+    temp = Ingrd.qty_base - Ingrd.qty_now
+    base = Ingrd.qty_base
+
+    Ingrd.qty_now = base
+    Ingrd.save()
+
+    if temp != 0:
+        add_content = Ingrd.name
+        add_spend = temp * Ingrd.price
+        add_salesdate = DateFormat(datetime.now()).format('Y-m-d')
+
+        add = Revenue(content=add_content, spend=add_spend, salesdate=add_salesdate)
+        add.save()
+
+    return redirect('MacKiosk:inventory')
 
 '''
 #메뉴선택화면으로
