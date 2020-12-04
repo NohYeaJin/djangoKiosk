@@ -32,12 +32,15 @@ urlpatterns = [
     path('kiosk/inputcard',inputcash,name='inputcard'),
     path('kiosk/complete',complete,name='complete'),
     path('kiosk/reset/', reset, name='reset'),
-    path('kiosk/<int:pk>/cancelMenu/', cancelMenu, name='cancelMenu'),
+    path('kiosk/cancelMenu/<int:cart_id>/', cancelMenu, name='cancelMenu'),
     path('seller/orderList/', orderList.as_view(), name='orderList'),
     path('seller/callList/', callList.as_view(), name='callList'),
     path('seller/inventory/', inventory, name='inventory'),
     path('seller/inventory/<int:inven_id>', orderIngrd, name='orderIngrd'),
     path('seller/revenue/', revenue, name='revenue'),
+    path('manager/managerMenu/', managerMenu.as_view(), name='managerMenu'),
+    path('manager/MenuAdd/', MenuAdd.as_view(), name='MenuAdd'),
+    path('manger/MenuDelete/<int:menu_id>/', MenuDelete, name='MenuDelete'),
     ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
