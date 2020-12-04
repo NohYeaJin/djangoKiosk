@@ -129,6 +129,10 @@ MEDIA_ROOT = 'djangoProject/'
 MEDIA_URL = '/'
 
 '''
+CART_ID = 'cart_in_session'
+'''
+
+'''
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
