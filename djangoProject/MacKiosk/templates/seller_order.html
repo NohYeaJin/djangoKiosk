@@ -1,0 +1,116 @@
+{% extends 'seller_base.html' %}
+{% load static %}
+
+{% block title %}Seller Order{% endblock %}
+
+{% block extra-style %}
+<style>
+.orderList {
+padding: 30px;
+margin: auto;
+width:80%;
+height: 300px;
+}
+
+.table {
+border-color:#4C4B4B;
+border-width: 2px;
+}
+.table thead{
+float:left;
+width:100%;
+}
+.table thead tr{
+display:table;
+vertical-align: middle;
+border-top:hidden;
+border-left:hidden;
+width:100%;
+}
+.table thead tr th{
+border-color:#4C4B4B;
+}
+.table tbody{
+overflow-y:scroll;
+overflow-x:hidden;
+float:left;
+width:100%;
+height:300px
+}
+.table tbody tr{
+display:table;
+border-top:hidden;
+border-left:hidden;
+width:100%;
+}
+.table tbody tr td{
+vertical-align: middle;
+border-color:#4C4B4B;
+border-bottom-color:#9B9B9B
+}
+
+.btn {
+background-color: #DEDEDE;
+border: none;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;}
+</style>
+{% endblock %}
+
+
+{% block order %}
+<h3 class="text-warning font-weight-bold">주문관리</h3>
+{% endblock %}
+
+
+<br>
+<br>
+
+{% block content %}
+<div class="orderList">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col" style="width:150px;">날짜</th>
+            <th scope="col" style="width:90px;">주문번호</th>
+            <th scope="col" style="width:400px;">주문 내역</th>
+            <th scope="col">관리</th>
+            <th style="border-left:hidden; border-right:hidden; width:5px;"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!--예시 출력-->
+        <tr>
+            <td style="width:150px;">2020/11/30</td>
+            <td style="width:90px;" class="font-weight-bold">143</td>
+            <td style="text-align:left; width:400px;">베이컨토마토디럭스<br>콜라 M<br>감자 M</td>
+            <td>
+                <a href="#" class="btn btn-sm active" role="button" aria-pressed="true">호출</a>
+                &nbsp&nbsp&nbsp<a href="#" class="btn btn-sm active" role="button" aria-pressed="true">완료</a>
+                &nbsp&nbsp&nbsp<a href="#" class="btn btn-sm btn-danger font-weight-bold active" role="button"
+                                  aria-pressed="true">⨉</a>
+            </td>
+        </tr>
+
+        <!-- 데이터 리스트 for문으로 출력 -->
+        {%for item in object_list %}
+        <tr>
+            <td style="width:150px;">{{ item.OrderDate }}</td>
+            <td style="width:90px;" class="font-weight-bold">{{ item.OrderNum }}</td>
+            <td style="text-align:left; width:400px;">{{ item.OrderMenu }}&nbsp&nbsp{{ item.OrderQty }}</td>
+            <td>
+                <a href="#" class="btn btn-sm active" role="button" aria-pressed="true">호출</a>
+                &nbsp&nbsp&nbsp<a href="#" class="btn btn-sm active" role="button" aria-pressed="true">완료</a>
+                &nbsp&nbsp&nbsp<a href="#" class="btn btn-sm btn-danger font-weight-bold active" role="button"
+                                  aria-pressed="true">⨉</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

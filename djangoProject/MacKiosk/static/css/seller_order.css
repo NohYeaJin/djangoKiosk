@@ -1,0 +1,53 @@
+
+.orderList {
+padding: 30px;
+margin: auto;
+width:80%;
+height: 300px;
+}
+
+.table {
+border-color:#4C4B4B;
+border-width: 2px;
+}
+.table thead{
+float:left;
+width:100%;
+}
+.table thead tr{
+display:table;
+vertical-align: middle;
+border-top:hidden;
+border-left:hidden;
+width:100%;
+}
+.table thead tr th{
+border-color:#4C4B4B;
+}
+.table tbody{
+overflow-y:scroll;
+overflow-x:hidden;
+float:left;
+width:100%;
+height:300px
+}
+.table tbody tr{
+display:table;
+border-top:hidden;
+border-left:hidden;
+width:100%;
+}
+.table tbody tr td{
+vertical-align: middle;
+border-color:#4C4B4B;
+border-bottom-color:#9B9B9B
+}
+
+.btn {
+background-color: #DEDEDE;
+border: none;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;}
