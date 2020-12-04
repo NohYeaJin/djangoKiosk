@@ -11,13 +11,12 @@ from .models import *
 from datetime import datetime, timedelta
 from random import *
 
-
+'''
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
-from .models import Menus
 from .cartforms import AddProductForm
 from .cart import ClCart
-
+'''
 
 
 def index(request):
@@ -173,7 +172,7 @@ def add(request, product_id):
     cart.add(product=product, quantity=cd['quantity'], is_update=cd['is_update'])
     return redirect('cart:detail')
 
-# 장바구니에서 삭제
+# 장바구니에서 삭제 -> 
 def remove(request, product_id):
     cart = ClCart(request)
     product = get_object_or_404(Menus, id=product_id)
