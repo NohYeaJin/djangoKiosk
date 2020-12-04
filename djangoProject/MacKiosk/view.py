@@ -172,7 +172,7 @@ def add(request, product_id):
     cart.add(product=product, quantity=cd['quantity'], is_update=cd['is_update'])
     return redirect('cart:detail')
 
-# 장바구니에서 삭제 -> 
+# 장바구니에서 삭제(삭제 예정)
 def remove(request, product_id):
     cart = ClCart(request)
     product = get_object_or_404(Menus, id=product_id)
