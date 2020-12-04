@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import TemplateView
+from django.urls import reverse_lazy
 
 from .models import *
 
@@ -158,6 +159,21 @@ def orderIngrd(request, inven_id):
         add.save()
 
     return redirect('MacKiosk:inventory')
+
+class managerMenu(ListView):
+    model = Menus
+    template_name = 'manager_menu.html'
+
+class MenuAdd(CreateView):
+    model = Menus
+    fields = ['MenuName', 'MenuPrice', 'image']
+    template_name = 'manu_add.html'
+    success_url = reverse_lazy('manager_menu.html')
+
+def MenuDelete(request, Mname):
+    m_qs = Menus.objects.get(ManuName=Mname)
+    m_qs.delete()
+    return HttpResponseRedirect(reverse('MacKiosk:managerMenu'))
 
 '''
 @require_POST
