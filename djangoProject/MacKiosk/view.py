@@ -223,7 +223,7 @@ def MenuDelete(request, Mname):
     return HttpResponseRedirect(reverse('MacKiosk:managerMenu'))
 
 
-@require_POST
+
 '''
 # 장바구니에 추가
 def add(request, product_id):
@@ -243,6 +243,7 @@ def remove(request, product_id):
     return redirect('cart:detail')
 '''
 
+@require_POST
 # 장바구니 템플렛 페이지(basket.html) 위한 함수
 def detail(request):
     cart = ClCart(request)
