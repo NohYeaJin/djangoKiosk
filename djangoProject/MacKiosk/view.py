@@ -12,12 +12,12 @@ from .models import *
 from datetime import datetime, timedelta
 from random import *
 
-
+'''
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from .cartforms import AddProductForm
 from .cart import ClCart
-
+'''
 
 
 def index(request):
