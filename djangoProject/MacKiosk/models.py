@@ -22,7 +22,7 @@ class Menu(models.Model):
         return self.MenuName
 
     class Meta:
-#        managed = False
+        managed = False
         db_table = 'menus'
 
 #장바구니
@@ -36,7 +36,7 @@ class Cart(models.Model):
         return self.name
 
     class Meta:
-#      managed = False
+      managed = False
       db_table = 'cart'
 
 #주문현황(판매자쪽 앱)
@@ -67,7 +67,7 @@ class Order(models.Model):
         return self.OrderDate
 
     class Meta:
-#     managed = False
+     managed = False
      db_table = 'orders'
 
 #재고(판매자쪽 앱)
@@ -84,7 +84,7 @@ class Inventory(models.Model):
         return self.name
 
     class Meta:
-#     managed = False
+     managed = False
      db_table = 'inventory'
 
 #매출(판매자쪽 앱)
@@ -103,7 +103,7 @@ class Revenue(models.Model):
         return str(self.salesdate)
 
     class Meta:
-#     managed = False
+     managed = False
      db_table = 'revenue'
 
 #고객 호출 번호

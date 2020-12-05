@@ -60,7 +60,6 @@ def inputcard(request):
     return render(request,'inputcard.html')
 
 
-
 class orderList(ListView):
     model = Order
     template_name='seller_order.html'
