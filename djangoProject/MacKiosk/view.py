@@ -12,12 +12,6 @@ from .models import *
 from datetime import datetime, timedelta
 from random import *
 
-'''
-from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
-from .cartforms import AddProductForm
-from .cart import ClCart
-'''
 
 
 def index(request):
@@ -224,37 +218,6 @@ def MenuDelete(request, Mname):
 
 
 
-'''
-# 장바구니에 추가
-def add(request, product_id):
-    cart = ClCart(request)
-    product = get_object_or_404(Menus, id=product_id)
-    form = AddProductForm(request.POST)
-    if form.is_valid():
-        cd = form.cleaned_data
-    cart.add(product=product, quantity=cd['quantity'], is_update=cd['is_update'])
-    return redirect('cart:detail')
-
-# 장바구니에서 삭제(삭제 예정)
-def remove(request, product_id):
-    cart = ClCart(request)
-    product = get_object_or_404(Menus, id=product_id)
-    cart.remove(product)
-    return redirect('cart:detail')
-
-@require_POST
-# 장바구니 템플렛 페이지(basket.html) 위한 함수
-def detail(request):
-    cart = ClCart(request)
-    for product in cart:
-        product['quantity_form'] = AddProductForm(initial={'quantity': product['quantity'], 'is_update': True})
-    return render(request, 'basket.html', {'cart': cart})
-
-
-def get_product_total(request):
-    total_price = sum(item.CartQty * item.Cartprice for item in Cart.objects.all())
-    return render(request, basket.html, total_price)
-'''
 
 '''
 #메뉴선택화면으로
