@@ -1,9 +1,9 @@
-
+'''
 from decimal import Decimal
 from django.conf import settings
 from .models import *
 
-'''
+
 ///삭제///
 
     def __init__(self, request):
@@ -56,9 +56,9 @@ from .models import *
     def get_product_total(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 ///삭제///
-'''
+
 
 class ClCart(object):
     def get_product_total(request):
         return sum(item.CartQty * item.Cartprice for item in Cart.objects.all())
-
+'''
