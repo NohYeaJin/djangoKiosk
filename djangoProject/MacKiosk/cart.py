@@ -1,4 +1,4 @@
-'''
+
 from decimal import Decimal
 from django.conf import settings
 from .models import *
@@ -59,4 +59,4 @@ class ClCart(object):
 
 def get_product_total(request):
     return sum(item.CartQty * item.Cartprice for item in Cart)
-'''
+
