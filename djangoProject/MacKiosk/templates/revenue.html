@@ -1,45 +1,35 @@
-<!DOCTYPE html>
+{% extends 'seller_base.html' %}
 {% load static %}
+
+{% block title %}Seller Order{% endblock %}
+
+{% block extra-style %}
+    <link rel="stylesheet" href="{% static 'css/seller_order.css' %}" />
+{% endblock %}
+
+
+{% block revenue %}
+<h3 class="text-warning font-weight-bold">매출관리</h3>
+{% endblock %}
+
+{% block content %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>맥도날드 키오스크</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=2" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=3" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     />
-      <script>
-    $(document).ready(function(){
-	    $('ul.category li').click(function(){
-		    var tab_id = $(this).attr('data-tab');
 
-		    $('ul.category li').removeClass('current');
-		    $('.menu').removeClass('current');
-
-		    $(this).addClass('current');
-		    $("#"+tab_id).addClass('current');
-	})
-
-})
-      </script>
   </head>
   <body>
-    <div class="banner">
-      <p>로고나 브랜드명</p>
-    </div>
-    <div class="tab">
-        <ul class="category">
-            <li data-tab="tab-1" class="tab-link current">주문관리</li>
-            <li data-tab="tab-2" class="tab-link">재고관리</li>
-            <li data-tab="tab-3" class="tab-link">매출관리</li>
-        </ul>
-    </div>
-    <br><br><br><br><br><br><br><br>
+
         <div class="revenue_table" id="tab-3" align="center">
             <form action="" method="POST">
                 {% csrf_token %}
@@ -84,4 +74,6 @@
             </table>
         </div>
   </body>
+
 </html>
+{% endblock %}
