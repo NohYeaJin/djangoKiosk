@@ -39,18 +39,16 @@ body {
 </div>
 
 <div id="orderNum" class="ml-5">
-    <!--예시 출력-->
-    <h1 class="display-1 font-weight-bold">143</h1>
-    <h1 class="display-1 font-weight-bold">115</h1>
-    
     {% for item in object_list %}
+    {% if item.OrderComplete %}
     <h1 class="display-1 font-weight-bold">{{ item.OrderNum }}</h1>
+    {% endif %}
     {% endfor %}
 </div>
 
 <footer class="fixed-bottom text-right">
     <img
-            src="{% static 'images/mcdonalds logo.png' %}"
+            src="{% static 'images/MacLogo.png' %}"
             alt="McDonald's Logo"
             style="width:30%; height:30%;"
     />

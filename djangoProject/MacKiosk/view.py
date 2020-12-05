@@ -4,14 +4,20 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic import TemplateView
+from django.views.generic import View, TemplateView
+from django.urls import reverse_lazy
 
 from .models import *
 
 from datetime import datetime, timedelta
 from random import *
 
-
+'''
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
+from .cartforms import AddProductForm
+from .cart import ClCart
+'''
 
 
 def index(request):
@@ -20,18 +26,18 @@ def index(request):
 
 def menuSelect(request, show='default'):
 
-    single = Menus.objects.filter(category='single')
-    set = Menus.objects.filter(category='set')
-    side = Menus.objects.filter(category='side')
-    drink = Menus.objects.filter(category='drink')
-    dessert = Menus.objects.filter(category='dessert')
+    single = Menu.objects.filter(category='single')
+    set = Menu.objects.filter(category='set')
+    side = Menu.objects.filter(category='side')
+    drink = Menu.objects.filter(category='drink')
+    dessert = Menu.objects.filter(category='dessert')
     context = {'singles': single, 'sets': set, 'sides': side, 'drinks': drink, 'desserts': dessert}
 
     return render(request, 'index(example).html', context)
 
 
 def howmany(request, menu_id):
-    temp = Menus.objects.get(id=menu_id)
+    temp = Menu.objects.get(id=menu_id)
     context = {'menu': temp}
     return render(request, 'howmany(example).html', context)
 
@@ -55,31 +61,64 @@ def inputcard(request):
     return render(request,'inputcard.html')
 
 
-class orderList(TemplateView):
+class orderList(ListView):
+    model = Order
     template_name='seller_order.html'
 
-class callList(TemplateView):
+class orderCompV(DeleteView):
+    model=Order
+    success_url=reverse_lazy('MacKiosk:orderList')
+
+    def get(self, request, *args, **kwargs):
+        o_qs = Order.objects.get(id=self.kwargs.get('pk'))
+        #        i_qs = Inventory.objects.get(OrderMenu=o_qs.OrderMenu)
+
+        #        i_qs.qty -= 1
+        #        i_qs.save()
+        r_qs = Revenue(content=o_qs.OrderMenu, spend=0, sales=o_qs.OrderPrice, salesdate=o_qs.OrderDate)
+        r_qs.save()
+        return self.post(request, *args, **kwargs)
+
+class orderCancV(DeleteView):
+    model = Order
+    success_url=reverse_lazy('MacKiosk:orderList')
+
+    def get(self, request, *args, **kwargs):
+       return self.post(request, *args, **kwargs)
+
+class call(View):
+    def get(self, request, *args, **kwargs):
+        queryset = Order.objects.all()
+        if queryset.count() != 1:
+            status = Order.objects.get(id=self.kwargs.get('pk'))
+            status.OrderComplete = True
+            status.save()
+
+        return HttpResponseRedirect(reverse('MacKiosk:orderList'))
+
+class callList(ListView):
+    model = Order
+   # queryset = Order.objects.filter(OrderComplete=True)
     template_name='call_list.html'
 
-
 def showOrderNum(request, cus_num):
-    o_qs = Orders.objects.get(OrderNum=cus_num)
+    o_qs = Order.objects.get(OrderNum=cus_num)
     context = {'o_qs': o_qs}    #{{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
     return render(request, 'complete.html', context)
 
 def complete(request):
     #Cart의 주문 정보를 Order로 옮김
     c_qs = Cart.objects.all()
-    num = Orders.objects.last().OrderNum
+    num = Order.objects.last().OrderNum
     num = num + 100
     for i in c_qs:
 
-        o_qs = Orders(OrderMenu=i.CartMenu, OrderQty=i.CartQty, OrderDate=datetime.today(),OrderNum=num,
+        o_qs = Order(OrderMenu=i.CartMenu, OrderQty=i.CartQty, OrderDate=datetime.today(),OrderNum=num,
                       OrderPrice=i.CartPrice)
         o_qs.save()
 
     #o_qs = Orders(OrderNum=cus_num, OrderQty=c_qs.CartQty, OrderMenu=c_qs.CartMenu, OrderDate=datetime.today(), OrderPrice=c_qs.CartPrice)
-    o_qs = Orders.objects.last()
+    o_qs = Order.objects.last()
     context = {'o_qs': o_qs}  # {{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
     return render(request, 'complete.html', context)
     #문제점: 한 고객이 여러 메뉴를 동시에 주문하는 경우
@@ -167,6 +206,50 @@ def orderIngrd(request, inven_id):
         add.save()
 
     return redirect('MacKiosk:inventory')
+
+class managerMenu(ListView):
+    model = Menu
+    template_name = 'manager_menu.html'
+
+class MenuAdd(CreateView):
+    model = Menu
+    fields = ['MenuName', 'MenuPrice', 'image']
+    template_name = 'manu_add.html'
+    success_url = reverse_lazy('manager_menu.html')
+
+def MenuDelete(request, Mname):
+    m_qs = Menu.objects.get(ManuName=Mname)
+    m_qs.delete()
+    return HttpResponseRedirect(reverse('MacKiosk:managerMenu'))
+
+'''
+@require_POST
+
+# 장바구니에 추가
+def add(request, product_id):
+    cart = ClCart(request)
+    product = get_object_or_404(Menus, id=product_id)
+    form = AddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+    cart.add(product=product, quantity=cd['quantity'], is_update=cd['is_update'])
+    return redirect('cart:detail')
+
+# 장바구니에서 삭제(삭제 예정)
+def remove(request, product_id):
+    cart = ClCart(request)
+    product = get_object_or_404(Menus, id=product_id)
+    cart.remove(product)
+    return redirect('cart:detail')
+
+# 장바구니 템플렛 페이지(basket.html) 위한 함수
+def detail(request):
+    cart = ClCart(request)
+    for product in cart:
+        product['quantity_form'] = AddProductForm(initial={'quantity': product['quantity'], 'is_update': True})
+    return render(request, 'basket.html', {'cart': cart})
+'''
+
 
 '''
 #메뉴선택화면으로

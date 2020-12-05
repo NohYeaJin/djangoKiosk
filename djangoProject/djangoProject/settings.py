@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'djangoProject.djangoProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'macKiosk',
         'USER': 'root',
         'PASSWORD': 'kiosk1234',
@@ -128,6 +128,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = 'djangoProject/'
 MEDIA_URL = '/'
+
+'''
+CART_ID = 'cart_in_session'
+'''
 
 '''
 STATICFILES_FINDERS = (
