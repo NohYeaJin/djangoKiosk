@@ -12,12 +12,12 @@ from .models import *
 from datetime import datetime, timedelta
 from random import *
 
-'''
+
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from .cartforms import AddProductForm
 from .cart import ClCart
-'''
+
 
 
 def index(request):
@@ -222,9 +222,9 @@ def MenuDelete(request, Mname):
     m_qs.delete()
     return HttpResponseRedirect(reverse('MacKiosk:managerMenu'))
 
-'''
-@require_POST
 
+@require_POST
+'''
 # 장바구니에 추가
 def add(request, product_id):
     cart = ClCart(request)
@@ -241,6 +241,7 @@ def remove(request, product_id):
     product = get_object_or_404(Menus, id=product_id)
     cart.remove(product)
     return redirect('cart:detail')
+'''
 
 # 장바구니 템플렛 페이지(basket.html) 위한 함수
 def detail(request):
@@ -248,7 +249,7 @@ def detail(request):
     for product in cart:
         product['quantity_form'] = AddProductForm(initial={'quantity': product['quantity'], 'is_update': True})
     return render(request, 'basket.html', {'cart': cart})
-'''
+
 
 
 '''
