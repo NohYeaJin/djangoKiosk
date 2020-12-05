@@ -19,8 +19,6 @@ def index(request):
 
 
 def menuSelect(request, show='default'):
-    c_qs = Cart.objects.all()
-    c_qs.delete()
 
     single = Menus.objects.filter(category='single')
     set = Menus.objects.filter(category='set')
@@ -35,7 +33,7 @@ def menuSelect(request, show='default'):
 def howmany(request, menu_id):
     temp = Menus.objects.get(id=menu_id)
     context = {'menu': temp}
-    return render(request, 'howmany.html', context)
+    return render(request, 'howmany(example).html', context)
 
 
 
@@ -43,9 +41,12 @@ def selectPay(request):
     return render(request,'index3.html')
 
 def basket(request):
-    c_qs = Cart.objects.all()
-    context = {'cart_list': c_qs}
+    cart_list = Cart.objects.all()
+    context = {'cart_list': cart_list}
     return render(request, 'basket.html', context)
+
+
+
 
 def inputcash(request):
     return render(request,'inputcash.html')
@@ -94,11 +95,24 @@ def reset(request):
     return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
 
 #장바구니에서 메뉴 취소
-def cancelMenu(request, Mname):
+def cancelMenu(request, cart_id):
     #Cart DB에서 메뉴 삭제
-    c_qs = Cart.objects.get(name=Mname)
+    c_qs = Cart.objects.get(id=cart_id)
     c_qs.delete()
     return HttpResponseRedirect(reverse('MacKiosk:basket'))
+
+#장바구니 담기
+def addCart(request):    #선택한 메뉴 기준
+    menu_id = request.POST.get('MenuID')
+
+    m_qs = Menus.objects.get(id=menu_id)
+    add_qty = request.POST.get('MenuQty')
+    add_qty=int(add_qty)
+    add_price = (m_qs.MenuPrice) * add_qty
+    c_qs = Cart(CartMenu=m_qs.MenuName, CartQty=add_qty, CartPrice=add_price)
+    c_qs.save()
+
+    return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
 
 def revenue(request):
     if request.method == 'GET':

@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.urls import path
+
+from . import view
 from .view import *
 from django.contrib import admin
 from django.conf.urls import include, url
@@ -32,7 +34,8 @@ urlpatterns = [
     path('kiosk/inputcard',inputcash,name='inputcard'),
     path('kiosk/complete',complete,name='complete'),
     path('kiosk/reset/', reset, name='reset'),
-    path('kiosk/<int:pk>/cancelMenu/', cancelMenu, name='cancelMenu'),
+    path('kiosk/addCart', addCart, name='addCart'),
+    path('kiosk/cancelMenu/<int:cart_id>', cancelMenu, name='cancelMenu'),
     path('seller/orderList/', orderList.as_view(), name='orderList'),
     path('seller/callList/', callList.as_view(), name='callList'),
     path('seller/inventory/', inventory, name='inventory'),

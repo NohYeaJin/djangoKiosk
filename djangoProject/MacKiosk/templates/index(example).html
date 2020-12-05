@@ -45,14 +45,14 @@
             <li data-tab="tab-3" class="tab-link">사이드</li>
             <li data-tab="tab-4" class="tab-link">디저트</li>
             <li data-tab="tab-5" class="tab-link">음료</li>
-        </ul><br><br><br><br><br>
+        </ul>
     <div class="menu current" id="tab-1">
         <ul class="menu_list" id="menuList1">
             {% for set in sets %}
             <li>
               <a href="howmany/{{ set.pk }}" clas="menu_name">
               <div class="photo">
-                <img src="{{set.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+                <img src="{{set.image.url}}" alt = "Nothing">
               </div>
               <div class="menu_name">
                 {{set.MenuName}}
@@ -69,7 +69,7 @@
             <li>
               <a href="howmany/{{ single.pk }}" clas="menu_name">
               <div class="photo">
-                <img src="{{single.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+                <img src="{{single.image.url}}" alt = "Nothing" >
               </div>
               <div class="menu_name">
                 {{single.MenuName}}
@@ -86,7 +86,7 @@
             <li>
               <a href="howmany/{{ side.pk }}" clas="menu_name">
               <div class="photo">
-                <img src="{{side.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+                <img src="{{side.image.url}}" alt = "Nothing" >
               </div>
               <div class="menu_name">
                 {{side.MenuName}}
@@ -103,7 +103,7 @@
             <li>
               <a href="howmany/{{ dessert.pk }}" clas="menu_name">
               <div class="photo">
-                <img src="{{dessert.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+                <img src="{{dessert.image.url}}" alt = "Nothing" >
               </div>
               <div class="menu_name">
                 {{dessert.MenuName}}
@@ -120,7 +120,7 @@
             <li>
               <a href="howmany/{{ drink.pk }}" clas="menu_name">
               <div class="photo">
-                <img src="{{drink.image.url}}" alt = "Nothing" style="width:300px; height:250px">
+                <img src="{{drink.image.url}}" alt = "Nothing" >
               </div>
               <div class="menu_name">
                 {{drink.MenuName}}

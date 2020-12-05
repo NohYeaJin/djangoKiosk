@@ -4,8 +4,8 @@ from django.db import models
 
 #메뉴(판매자쪽 앱으로 보내는건 어떨까)
 class Menus(models.Model):
-
-    MenuName = models.CharField('MenuName', max_length=50, primary_key=True)
+    id = models.AutoField(primary_key=True)
+    MenuName = models.CharField('MenuName', max_length=50)
     MenuPrice = models.IntegerField('MenuPrice')
     #image = models.ImageField(upload_to='djangoProject/MacKiosk/static/images/')
     image = models.ImageField(upload_to='MacKiosk/static/images/', default=None)
@@ -25,15 +25,18 @@ class Menus(models.Model):
         managed = False
         db_table = 'menus'
 
+
+
 #장바구니
 class Cart(models.Model):
 
-    CartMenu = models.CharField('CartMenu', max_length=50,primary_key=True)
+    id = models.AutoField(primary_key=True)
+    CartMenu = models.CharField('CartMenu', max_length=50)
     CartQty = models.IntegerField('CartQty')
     CartPrice = models.IntegerField('CartPrice')
 
     def __str__(self):
-        return self.name
+        return self.CartMenu
 
     class Meta:
       managed = False

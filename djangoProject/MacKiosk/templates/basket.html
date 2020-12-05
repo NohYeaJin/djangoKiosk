@@ -15,27 +15,27 @@
     />
     <script type="text/javascript">
     $(document).ready(function(){
-    	
+
     	var rowCnt = 0;
-    	var colIdx = 3;	
-    	var colSum = 0;	
-    	
+    	var colIdx = 0;
+    	var colSum = 0;
+
     	$("#orderedmenu tr").each(function(){
     		if( rowCnt != 0 ){
     			var sell = $(this).children("td");
     			$(sell).each(function(){
     				var idx = $(this).index();
     				var val = $(this).text();
-    				
+
     				if( idx == colIdx ){
-    					colSum += parseInt(val); 
+    					colSum += parseInt(val);
     				}
     			});
     	  }
-    		
+
     		  rowCnt++;
     	});
-    	
+
     	$("#a_sum").text(colSum);
 
     });
@@ -60,34 +60,20 @@
     <div class="title">장바구니</div>
     <div class="table">
         <table id = 'orderedmenu'>
-            <th>번호</th>
             <th>메뉴명</th>
             <th>수량</th>
             <th>가격</th>
             <th>취소</th>
             <tbody></tbody>
+            {% for cart in cart_list %}
             <tr>
-                <td>1</td>
-                <td>빅맥</td>
-                <td>2</td>
-                <td>9000원</td>
-                <td><button onclick='rowDel(this);'>취소</button></td>
+                <td>{{ cart.CartMenu }}</td>
+                <td>{{ cart.CartQty }}</td>
+                <td>{{ cart.CartPrice }}</td>
+                <td><button onclick="rowDel(this); location.href='{% url 'MacKiosk:cancelMenu' cart.id %}'">취소</button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>맥너겟 4조각</td>
-                <td>1</td>
-                <td>1700원</td>
-                <td><button onclick='rowDel(this);'>취소</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>콜라M</td>
-                <td>3</td>
-                <td>3900원</td>
-                <td><button onclick='rowDel(this);'>취소</button></td>
-            </tr>
-            </tbody>
+            {% endfor %}
+            <tbody></tbody>
         </table>
     </div>
     <div class="rollback"><button id='btn-empty'>전체취소</button></div>
