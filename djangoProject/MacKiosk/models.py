@@ -75,7 +75,7 @@ class Order(models.Model):
 
 #재고(판매자쪽 앱)
 class Inventory(models.Model):
-
+    id = models.AutoField(primary_key=True)
     name = models.CharField('IngrdName', max_length=50)
     qty_base = models.IntegerField('IngrdQtybase')
     qty_now = models.IntegerField('IngrdQtynow')

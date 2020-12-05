@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.utils.dateformat import DateFormat
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import View, TemplateView
@@ -26,18 +27,17 @@ def index(request):
 
 def menuSelect(request, show='default'):
 
-    single = Menu.objects.filter(category='single')
-    set = Menu.objects.filter(category='set')
-    side = Menu.objects.filter(category='side')
-    drink = Menu.objects.filter(category='drink')
-    dessert = Menu.objects.filter(category='dessert')
+    single = Menus.objects.filter(category='single')
+    set = Menus.objects.filter(category='set')
+    side = Menus.objects.filter(category='side')
+    drink = Menus.objects.filter(category='drink')
+    dessert = Menus.objects.filter(category='dessert')
     context = {'singles': single, 'sets': set, 'sides': side, 'drinks': drink, 'desserts': dessert}
-
     return render(request, 'index(example).html', context)
 
 
 def howmany(request, menu_id):
-    temp = Menu.objects.get(id=menu_id)
+    temp = Menus.objects.get(id=menu_id)
     context = {'menu': temp}
     return render(request, 'howmany(example).html', context)
 
@@ -208,17 +208,17 @@ def orderIngrd(request, inven_id):
     return redirect('MacKiosk:inventory')
 
 class managerMenu(ListView):
-    model = Menu
+    model = Menus
     template_name = 'manager_menu.html'
 
 class MenuAdd(CreateView):
-    model = Menu
+    model = Menus
     fields = ['MenuName', 'MenuPrice', 'image']
     template_name = 'manu_add.html'
     success_url = reverse_lazy('manager_menu.html')
 
 def MenuDelete(request, Mname):
-    m_qs = Menu.objects.get(ManuName=Mname)
+    m_qs = Menus.objects.get(ManuName=Mname)
     m_qs.delete()
     return HttpResponseRedirect(reverse('MacKiosk:managerMenu'))
 

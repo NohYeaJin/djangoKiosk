@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'djangoProject.djangoProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'macKiosk',
         'USER': 'root',
         'PASSWORD': 'kiosk1234',
