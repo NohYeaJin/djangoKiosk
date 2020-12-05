@@ -241,7 +241,6 @@ def remove(request, product_id):
     product = get_object_or_404(Menus, id=product_id)
     cart.remove(product)
     return redirect('cart:detail')
-'''
 
 @require_POST
 # 장바구니 템플렛 페이지(basket.html) 위한 함수
@@ -250,7 +249,11 @@ def detail(request):
     for product in cart:
         product['quantity_form'] = AddProductForm(initial={'quantity': product['quantity'], 'is_update': True})
     return render(request, 'basket.html', {'cart': cart})
+'''
 
+def get_product_total(request):
+    total_price = sum(item.CartQty * item.Cartprice for item in Cart.objects.all())
+    return render(request, basket.html, total_price)
 
 
 '''
