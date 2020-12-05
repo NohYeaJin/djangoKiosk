@@ -34,9 +34,12 @@ img {
   text-align: center;
   height: 360px;
   float: left;
+  margin-left: 300px;
+  margin-top: 150px;
 }
 
 .triangle {
+
   height: 70px;
   width: 70px;
 }
@@ -62,7 +65,7 @@ img {
 .arrows {
   margin-left: 10%;
   float: left;
-  margin-top: 6%;
+  margin-top: 11%;
 }
 
 .menu_name {
@@ -74,11 +77,12 @@ img {
   size: 12px;
 }
 .button_1 {
-  margin-left: 10%;
+  margin-left: 8%;
   padding-top: 10%;
   padding-left: 2%;
   float: left;
   width: 200px;
+  margin-top: 30px;
 }
 button {
   font-size: 20px;

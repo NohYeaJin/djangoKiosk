@@ -12,7 +12,7 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=2" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?ver=3" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -133,9 +133,11 @@
     </div>
     </div>
     <div class="basket">
-      <p id="total_price">{{ cart.get_total_price }}</p>
-      <button>초기화</button>
-        <div class="title"><a href="basket">장바구니</a></div>
+        <p>Total: </p>
+      <p id="total_price">{{ total_price }}</p>
+        <p>원</p>
+      <button onclick="location.href='{% url 'MacKiosk:reset2' %}'">초기화</button>
+        <button class="title" onclick="location.href='/kiosk/basket'">장바구니</button>
     </div>
   </body>
 </html>

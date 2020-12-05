@@ -7,8 +7,9 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import View, TemplateView
 from django.urls import reverse_lazy
-
+import pandas as pd
 from .models import *
+from django.utils.dateformat import DateFormat
 
 from datetime import datetime, timedelta
 from random import *
@@ -26,13 +27,18 @@ def index(request):
 
 
 def menuSelect(request, show='default'):
-
+    total_price = 0
+    c_qs = Cart.objects.all()
+    for i in c_qs:
+        total_price += i.CartPrice
     single = Menus.objects.filter(category='single')
     set = Menus.objects.filter(category='set')
     side = Menus.objects.filter(category='side')
     drink = Menus.objects.filter(category='drink')
     dessert = Menus.objects.filter(category='dessert')
-    context = {'singles': single, 'sets': set, 'sides': side, 'drinks': drink, 'desserts': dessert}
+    context = {'singles': single, 'sets': set, 'sides': side, 'drinks': drink, 'desserts': dessert,'total_price': total_price}
+
+
     return render(request, 'index(example).html', context)
 
 
@@ -47,8 +53,12 @@ def selectPay(request):
     return render(request,'index3.html')
 
 def basket(request):
+    total_price = 0
+    c_qs = Cart.objects.all()
+    for i in c_qs:
+        total_price += i.CartPrice
     cart_list = Cart.objects.all()
-    context = {'cart_list': cart_list}
+    context = {'cart_list': cart_list, 'total_price':total_price}
     return render(request, 'basket.html', context)
 
 
@@ -66,13 +76,12 @@ class orderList(ListView):
     template_name='seller_order.html'
 
 class orderCompV(DeleteView):
-    model=Order
-    success_url=reverse_lazy('MacKiosk:orderList')
+    model = Order
+    success_url = reverse_lazy('MacKiosk:orderList')
 
     def get(self, request, *args, **kwargs):
         o_qs = Order.objects.get(id=self.kwargs.get('pk'))
         #        i_qs = Inventory.objects.get(OrderMenu=o_qs.OrderMenu)
-
         #        i_qs.qty -= 1
         #        i_qs.save()
         r_qs = Revenue(content=o_qs.OrderMenu, spend=0, sales=o_qs.OrderPrice, salesdate=o_qs.OrderDate)
@@ -107,18 +116,16 @@ def showOrderNum(request, cus_num):
     return render(request, 'complete.html', context)
 
 def complete(request):
-    #Cart의 주문 정보를 Order로 옮김
     c_qs = Cart.objects.all()
-    num = Order.objects.last().OrderNum
-    num = num + 100
+    #Cart의 주문 정보를 Order로 옮김
+    num = randint(100, 1000)
     for i in c_qs:
 
         o_qs = Order(OrderMenu=i.CartMenu, OrderQty=i.CartQty, OrderDate=datetime.today(),OrderNum=num,
                       OrderPrice=i.CartPrice)
         o_qs.save()
-
+    c_qs.delete()
     #o_qs = Orders(OrderNum=cus_num, OrderQty=c_qs.CartQty, OrderMenu=c_qs.CartMenu, OrderDate=datetime.today(), OrderPrice=c_qs.CartPrice)
-    o_qs = Order.objects.last()
     context = {'o_qs': o_qs}  # {{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
     return render(request, 'complete.html', context)
     #문제점: 한 고객이 여러 메뉴를 동시에 주문하는 경우
@@ -127,12 +134,23 @@ def complete(request):
     #주문완료, 주문취소에서도 동일 문제 발생
     
 #초기화 후 첫 화면
+'''
 def reset(request):
     #장바구니 삭제
     c_qs = Cart.objects.all()
     c_qs.delete()
-    return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
+    return HttpResponseRedirect(reverse('M'))
+    '''
 
+def reset(request):
+    c_qs = Cart.objects.all()
+    c_qs.delete()
+    return HttpResponseRedirect(reverse('MacKiosk:basket'))
+
+def reset2(request):
+    c_qs = Cart.objects.all()
+    c_qs.delete()
+    return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
 #장바구니에서 메뉴 취소
 def cancelMenu(request, cart_id):
     #Cart DB에서 메뉴 삭제

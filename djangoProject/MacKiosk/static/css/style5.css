@@ -52,7 +52,7 @@ button.goshopping {
   float: right;
   margin-right: 30px;
   margin: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
   font-size: 20px;
 }
 button.charge {
@@ -60,7 +60,7 @@ button.charge {
   height: 80px;
   float: right;
   margin: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
   font-size: 20px;
 }
 
@@ -93,6 +93,14 @@ button.charge {
   right: 0;
 }
 .basket p {
+  float: left;
+  font-size: 60px;
+}
+.total{
+  float: left;
+  font-size: 60px;
+}
+.won{
   float: left;
   font-size: 60px;
 }
