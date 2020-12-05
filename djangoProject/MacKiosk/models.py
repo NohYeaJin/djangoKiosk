@@ -3,7 +3,7 @@ import django
 from django.db import models
 
 #메뉴(판매자쪽 앱으로 보내는건 어떨까)
-class Menus(models.Model):
+class Menu(models.Model):
 
     MenuName = models.CharField('MenuName', max_length=50, primary_key=True)
     MenuPrice = models.IntegerField('MenuPrice')
@@ -40,13 +40,15 @@ class Cart(models.Model):
       db_table = 'cart'
 
 #주문현황(판매자쪽 앱)
-class Orders(models.Model):
+class Order(models.Model):
 
+    id = models.AutoField(primary_key=True)
     OrderNum = models.IntegerField('OrderNum')
     OrderQty = models.IntegerField('OrderQty')
-    OrderMenu = models.CharField('OrderMenu', max_length=50,primary_key=True)
+    OrderMenu = models.CharField('OrderMenu', max_length=50)
     OrderDate = models.DateField('OrderDate')
     OrderPrice = models.IntegerField('OrderPrice')
+    OrderComplete=models.BooleanField('CompleteStatus',default=False)
 
     def __str__(self):
         return self.OrderMenu
@@ -58,8 +60,8 @@ class Orders(models.Model):
     def get_order_qty(self):
         return self.OrderQty
 
-    def get_menu_name(self):
-        return self.MenuName
+    def get_order_menu(self):
+        return self.OrderMenu
 
     def get_order_date(self):
         return self.OrderDate
@@ -111,5 +113,3 @@ class CallCustomer(models.Model):
 
     def __str__(self):
         return str(self.orderNum)
-
-
