@@ -59,6 +59,6 @@ from .models import *
 
 '''
 class ClCart(object):
-    def get_product_total(request):
+    def get_total_price(request):
         return sum(item.CartQty * item.Cartprice for item in Cart.objects.all())
 
