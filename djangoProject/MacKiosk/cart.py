@@ -1,9 +1,11 @@
-
+'''
 from decimal import Decimal
 from django.conf import settings
 from .models import *
 
-class ClCart(object):
+
+///삭제///
+
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(settings.CART_ID)
@@ -51,11 +53,12 @@ class ClCart(object):
         self.session.modified = True
 
     # 합계
-    def get_product_total(request):
+    def get_product_total(self):
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+///삭제///
+
+'''
+class ClCart(object):
+    def get_total_price(request):
         return sum(item.CartQty * item.Cartprice for item in Cart.objects.all())
-
-
-
-def get_product_total(request):
-    return sum(item.CartQty * item.Cartprice for item in Cart)
 

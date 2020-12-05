@@ -79,7 +79,7 @@
     <div class="rollback"><button id='btn-empty'>전체취소</button></div>
     <div class="basket">
       <div class="total">Total:  </div>
-      <p id="a_sum">0</p>
+      <p id="total_price">{{ cart.get_total_price }}</p>
       <div class="won"> 원</div>
       <button class="goshopping" type="button" onclick="location.href='menus'">계속 쇼핑하기</button>
       <button class="charge" type="button" onclick="location.href='selectPay'">결제하기</button>
