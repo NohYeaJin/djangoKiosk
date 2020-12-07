@@ -21,9 +21,9 @@ class Menus(models.Model):
     def __str__(self):
         return self.MenuName
 
-    #class Meta:
-    #    managed = False
-    #    db_table = 'menus'
+    class Meta:
+        managed = False
+        db_table = 'menus'
 
 
 
@@ -38,9 +38,9 @@ class Cart(models.Model):
     def __str__(self):
         return self.CartMenu
 
-    #class Meta:
-    #  managed = False
-    #  db_table = 'cart'
+    class Meta:
+      managed = False
+      db_table = 'cart'
 
 #주문현황(판매자쪽 앱)
 class Order(models.Model):
@@ -69,9 +69,9 @@ class Order(models.Model):
     def get_order_date(self):
         return self.OrderDate
 
-    #class Meta:
-    # managed = False
-    # db_table = 'orders'
+    class Meta:
+     managed = False
+     db_table = 'orders'
 
 #재고(판매자쪽 앱)
 class Inventory(models.Model):
@@ -86,9 +86,9 @@ class Inventory(models.Model):
     def __str__(self):
         return self.name
 
-    #class Meta:
-    # managed = False
-    # db_table = 'inventory'
+    class Meta:
+     managed = False
+     db_table = 'inventory'
 
 #매출(판매자쪽 앱)
 class Revenue(models.Model):
@@ -105,9 +105,9 @@ class Revenue(models.Model):
     def __str__(self):
         return str(self.salesdate)
 
-    #class Meta:
-    # managed = False
-    # db_table = 'revenue'
+    class Meta:
+     managed = False
+     db_table = 'revenue'
 
 #고객 호출 번호
 class CallCustomer(models.Model):
