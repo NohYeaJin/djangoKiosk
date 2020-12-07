@@ -167,7 +167,7 @@ def addCart(request):    #선택한 메뉴 기준
 
 def revenue(request):
     if request.method == 'GET':
-        temp = Revenue.objects.all()
+        temp = Revenue.objects.all().order_by('-id', 'salesdate')
 
         sales = 0
         for i in temp:
@@ -182,7 +182,7 @@ def revenue(request):
     elif request.method == 'POST':
         start = request.POST['start']
         end = request.POST['end']
-        temp = Revenue.objects.filter(salesdate__in=pd.date_range(start, end))
+        temp = Revenue.objects.filter(salesdate__in=pd.date_range(start, end)).order_by('-id', 'salesdate')
 
         sales = 0
         for i in temp:

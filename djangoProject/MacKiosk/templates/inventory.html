@@ -5,6 +5,65 @@
 
 {% block extra-style %}
     <link rel="stylesheet" href="{% static 'css/seller_order.css' %}" />
+    <style>
+        inventory {
+        padding: 30px;
+        margin: auto;
+        width:100%;
+        height: 300px;
+        }
+
+        table {
+        border-color:white;
+        border-width: 5px;
+        }
+        table thead{
+        float:left;
+        width:100%;
+        padding-right: 16.5px;
+        }
+        table thead tr{
+        display:table;
+        vertical-align: middle;
+        border-top:hidden;
+        border-left:hidden;
+        border-right:hidden;
+        width:100%;
+        }
+        table thead tr th{
+        border-color:#4C4B4B;
+        width:20%;
+        text-align: center;
+        }
+        table tbody{
+        overflow-y:scroll;
+        overflow-x:hidden;
+        float:left;
+        width:100%;
+        height:300px
+        }
+        table tbody tr{
+        display:table;
+        border-top:hidden;
+        border-left:hidden;
+        border-right:hidden;
+        width:100%;
+        }
+        table tbody tr td{
+        vertical-align: middle;
+        border-color:#4C4B4B;
+        border-bottom-color:#9B9B9B;
+        width:20%;
+        }
+        .btn {
+        background-color: #DEDEDE;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;}
+        </style>
 {% endblock %}
 
 {% block inventory %}
@@ -28,27 +87,33 @@
 
   </head>
   <body>
-  <br><br><br><br>
+  <br>
+    <div class="inventory">
         <div class="inventory_table" id="tab-2" align="center">
-            <table align="center" text-align="center" border="1" cellpadding="10" cellspacing="5" width="70%">
-                <tr>
-                    <th>상품</th>
-                    <th>기초재고</th>
-                    <th>현재고</th>
-                    <th>폐기기한</th>
-                    <th></th>
-                </tr>
+            <table class="table" align="center" text-align="center" border="1" cellpadding="10" cellspacing="5" width="90%">
+                <thead>
+                    <tr>
+                        <th>상품</th>
+                        <th>기초재고</th>
+                        <th>현재고</th>
+                        <th>폐기기한</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
                 {% for inventory in inventories %}
                     <tr align="center">
                         <td>{{ inventory.name }}</td>
                         <td>{{ inventory.qty_base }}</td>
                         <td>{{ inventory.qty_now }}</td>
                         <td>{{ inventory.exprtdate|date:"o년 m월 j일, h:i" }}</td>
-                        <td><a href="/seller/inventory/{{ inventory.id }}"><input type="button" value="발주" onClick="location.href='MacKiosk:inventory'"></a></td>
+                        <td><a href="/seller/inventory/{{ inventory.id }}" class="btn btn-sm active" role="button" aria-pressed="true">발주</a></td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
+    </div>
   </body>
 </html>
 {% endblock %}

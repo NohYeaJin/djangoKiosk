@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order
+from .models import Order, Revenue
 from .models import Menus
 from .models import Inventory
 
@@ -13,6 +13,11 @@ class orderAdmin (admin.ModelAdmin):
 class inventoryAdmin (admin.ModelAdmin):
     list_display = ('name', 'qty_base', 'price', 'origin', 'exprtdate')
 
+class revenueAdmin(admin.ModelAdmin):
+    list_display = ('id','content', 'sales', 'spend', 'salesdate')
+
+
 admin.site.register(Order, orderAdmin)
 admin.site.register(Menus, menuAdmin)
 admin.site.register(Inventory, inventoryAdmin)
+admin.site.register(Revenue, revenueAdmin)

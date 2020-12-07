@@ -34,7 +34,7 @@ urlpatterns = [
     path('kiosk/inputcard',inputcash,name='inputcard'),
     path('kiosk/complete',complete,name='complete'),
     path('kiosk/reset', reset, name='reset'),
-path('kiosk/reset2', reset2, name='reset2'),
+    path('kiosk/reset2', reset2, name='reset2'),
     path('kiosk/addCart', addCart, name='addCart'),
     path('kiosk/cancelMenu/<int:cart_id>', cancelMenu, name='cancelMenu'),
     path('seller/orderList/', orderList.as_view(), name='orderList'),
@@ -50,7 +50,7 @@ path('kiosk/reset2', reset2, name='reset2'),
     path('manger/MenuDelete/<int:menu_id>/', MenuDelete, name='MenuDelete'),
     ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''
 
