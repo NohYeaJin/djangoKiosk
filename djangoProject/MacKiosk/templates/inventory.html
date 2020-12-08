@@ -32,7 +32,7 @@
         }
         table thead tr th{
         border-color:#4C4B4B;
-        width:20%;
+        width:16%;
         text-align: center;
         }
         table tbody{
@@ -53,7 +53,7 @@
         vertical-align: middle;
         border-color:#4C4B4B;
         border-bottom-color:#9B9B9B;
-        width:20%;
+        width:16%;
         }
         .btn {
         background-color: #DEDEDE;
@@ -96,7 +96,8 @@
                         <th>상품</th>
                         <th>기초재고</th>
                         <th>현재고</th>
-                        <th>폐기기한</th>
+                        <th>폐기기한(이전발주)</th>
+                        <th>폐기기한(최근발주)</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -106,7 +107,8 @@
                         <td>{{ inventory.name }}</td>
                         <td>{{ inventory.qty_base }}</td>
                         <td>{{ inventory.qty_now }}</td>
-                        <td>{{ inventory.exprtdate|date:"o년 m월 j일, h:i" }}</td>
+                        <td>{{ inventory.exprtdate_old|date:"o년 m월 j일, h:i" }}</td>
+                        <td>{{ inventory.exprtdate_new|date:"o년 m월 j일, h:i" }}</td>
                         <td><a href="/seller/inventory/{{ inventory.id }}" class="btn btn-sm active" role="button" aria-pressed="true">발주</a></td>
                     </tr>
                 {% endfor %}

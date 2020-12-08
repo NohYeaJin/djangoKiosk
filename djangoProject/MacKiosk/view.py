@@ -190,10 +190,13 @@ def orderIngrd(request, inven_id):
     temp = Ingrd.qty_base - Ingrd.qty_now
     base = Ingrd.qty_base
 
-    Ingrd.qty_now = base
-    Ingrd.save()
-
     if temp != 0:
+        Ingrd.qty_now = base
+        d = timedelta(Ingrd.term)
+        Ingrd.exprtdate_old = Ingrd.exprtdate_new
+        Ingrd.exprtdate_new += d
+        Ingrd.save()
+
         add_content = Ingrd.name
         add_spend = temp * Ingrd.price
         add_salesdate = DateFormat(datetime.now()).format('Y-m-d')

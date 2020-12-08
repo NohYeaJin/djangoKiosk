@@ -11,7 +11,7 @@ class orderAdmin (admin.ModelAdmin):
     list_display = ('id', 'OrderNum', 'OrderQty', 'OrderMenu', 'OrderDate')
 
 class inventoryAdmin (admin.ModelAdmin):
-    list_display = ('name', 'qty_base', 'price', 'origin', 'exprtdate')
+    list_display = ('name', 'qty_base', 'price', 'origin', 'exprtdate_old', 'exprtdate_new')
 
 class revenueAdmin(admin.ModelAdmin):
     list_display = ('id','content', 'sales', 'spend', 'salesdate')

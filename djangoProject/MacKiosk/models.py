@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import django
 
 from django.db import models
@@ -81,7 +83,9 @@ class Inventory(models.Model):
     qty_now = models.IntegerField('IngrdQtynow')
     price = models.IntegerField('IngrdPrice')
     origin = models.CharField('IngrdOrigin', max_length=50)
-    exprtdate = models.DateTimeField('ExprtDate')
+    exprtdate_old = models.DateTimeField('ExprtDate_old', default=datetime.now())
+    exprtdate_new = models.DateTimeField('ExprtDate_new', default=datetime.now())
+    term = models.IntegerField('Term', default=10)
 
     def __str__(self):
         return self.name
