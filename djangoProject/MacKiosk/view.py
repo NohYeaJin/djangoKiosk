@@ -82,15 +82,13 @@ class orderCancV(DeleteView):
     success_url=reverse_lazy('MacKiosk:orderList')
 
     def get(self, request, *args, **kwargs):
-       return self.post(request, *args, **kwargs)
+        return self.post(request, *args, **kwargs)
 
 class call(View):
     def get(self, request, *args, **kwargs):
-        queryset = Order.objects.all()
-        if queryset.count() != 1:
-            status = Order.objects.get(id=self.kwargs.get('pk'))
-            status.OrderComplete = True
-            status.save()
+        status = Order.objects.get(id=self.kwargs.get('pk'))
+        status.OrderComplete = True
+        status.save()
 
         return HttpResponseRedirect(reverse('MacKiosk:orderList'))
 

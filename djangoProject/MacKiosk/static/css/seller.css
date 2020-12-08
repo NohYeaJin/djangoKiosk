@@ -5,12 +5,14 @@ border-width: 2px;
 
 .table thead{
 float:left;
+width:100%;
 }
 
 .table thead tr{
 display:table;
 border-top:hidden;
 border-left:hidden;
+width:100%;
 }
 
 .table thead tr th{
@@ -23,6 +25,7 @@ overflow-y:scroll;
 overflow-x:hidden;
 float:left;
 height: 50vh;
+width:100%;
 }
 
 .table tbody tr{
