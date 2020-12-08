@@ -1,25 +1,13 @@
-<!DOCTYPE html>
+{% extends 'kiosk_base.html' %}
 {% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>맥도날드 키오스크</title>
-    <link rel="stylesheet" href="{% static 'css/style2.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
-    <script type="text/javascript">
 
-    </script>
-  </head>
-  <body>
-    <div class="banner">
-      <p>로고나 브랜드명</p>
-    </div>
+{% block extra-style %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" />
+
+    <script type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
     <div class="btn"><button onClick="history.go(-1)">◀</button></div>
     <nav>
     <div id=div_01>
@@ -45,5 +33,4 @@
       </ul>
     </div>
   </div>
-  </body>
-</html>
+{% endblock %}

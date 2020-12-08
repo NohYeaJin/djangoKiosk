@@ -50,7 +50,7 @@ urlpatterns = [
     path('manger/MenuDelete/<int:menu_id>/', MenuDelete, name='MenuDelete'),
     ]
 
-#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''
 

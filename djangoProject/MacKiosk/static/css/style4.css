@@ -68,10 +68,13 @@ img {
   margin-top: 11%;
 }
 
-.menu_name {
+.menu_list {
   display: block;
   background-color: #e6e6e6;
   height: 90px;
+}
+.menu_name{
+  size: 12px;
 }
 .price {
   size: 12px;

@@ -67,7 +67,10 @@ a {
   color: white;
   text-align: center;
 }
-img {
+img.payment {
   height: 380px;
   width: 450px;
+}
+#logo{
+  width: 170px;
 }

@@ -1,25 +1,12 @@
-<!DOCTYPE html>
+{% extends 'kiosk_base.html' %}
 {% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>맥도날드 키오스크</title>
+
+{% block extra-style %}
     <link rel="stylesheet" href="{% static 'css/style7.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
-    <script type="text/javascript">
-    </script>
-  </head>
-  
-  <body>  
-    <div class="banner">
-      <p>로고나 브랜드명</p>
-    </div>
+    <script type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
     <div class="main"></div>
         <div class="title">결제가 완료되었습니다<br>
             고객님의 주문 번호는
@@ -28,7 +15,5 @@
             {{o_qs.OrderNum}}
         </div>
         <div class="title">입니다.</div>
-    </div>
     <div class="back"><a href="menus">메인화면으로 돌아가기</a></div>
-  </body>
-</html>
+{% endblock %}

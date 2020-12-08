@@ -1,17 +1,15 @@
 {% extends 'seller_base.html' %}
 {% load static %}
 
-{% block title %}Seller Order{% endblock %}
+{% block title %}맥도날드 주문관리{% endblock %}
 
 {% block extra-style %}
-    <link rel="stylesheet" href="{% static 'css/seller_order.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/seller.css' %}" />
 {% endblock %}
-
 
 {% block order %}
 <h3 class="text-warning font-weight-bold">주문관리</h3>
 {% endblock %}
-
 
 {% block content %}
 <div class="orderList">
@@ -34,9 +32,9 @@
             <td style="width:7vw; min-width:60px;" class="font-weight-bold">{{ item.OrderNum }}</td>
             <td style="text-align:left; width:35vw; min-width:200px;">{{ item.OrderMenu }}&nbsp&nbsp{{ item.OrderQty }}개</td>
             <td>
-                <a href="{%url 'MacKiosk:call' item.id %}" class="btn btn-sm active" role="button" aria-pressed="true">호출</a>
+                <a href="{% url 'MacKiosk:call' item.id %}" class="btn btn-sm active" role="button" aria-pressed="true">호출</a>
                 &nbsp&nbsp&nbsp
-                <a href="{%url 'MacKiosk:order_complete' item.id %}" class="btn btn-sm active" role="button" aria-pressed="true">완료</a>
+                <a href="{% url 'MacKiosk:order_complete' item.id %}" class="btn btn-sm active" role="button" aria-pressed="true">완료</a>
                 &nbsp&nbsp&nbsp
                 <button type="button" class="btn btn-sm btn-danger font-weight-bold active" aria-pressed="true" onclick="location.href='{%url 'MacKiosk:order_cancel' item.id %}'; return confirm('주문을 취소하시겠습니까?');">⨉</button>
             </td>
