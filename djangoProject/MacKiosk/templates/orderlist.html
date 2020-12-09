@@ -36,7 +36,7 @@
                 &nbsp&nbsp&nbsp
                 <a href="{% url 'MacKiosk:order_complete' item.id %}" class="btn btn-sm active" role="button" aria-pressed="true">완료</a>
                 &nbsp&nbsp&nbsp
-                <button type="button" class="btn btn-sm btn-danger font-weight-bold active" aria-pressed="true" onclick="location.href='{%url 'MacKiosk:order_cancel' item.id %}'; return confirm('주문을 취소하시겠습니까?');">⨉</button>
+                <button type="button" class="btn btn-sm btn-danger font-weight-bold active" aria-pressed="true" onclick="if(!confirm('주문을 취소하시겠습니까?')){return false;} location.href='{%url 'MacKiosk:order_cancel' item.id %}';">⨉</button>
             </td>
         </tr>
         {% endfor %}
