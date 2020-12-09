@@ -99,7 +99,7 @@ class callList(ListView):
 
 def showOrderNum(request, cus_num):
     o_qs = Order.objects.get(OrderNum=cus_num)
-    context = {'o_qs': o_qs}    #{{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
+    context = {'o_qs': o_qs}
     return render(request, 'complete.html', context)
 
 def complete(request):
