@@ -82,15 +82,13 @@ class orderCancV(DeleteView):
     success_url=reverse_lazy('MacKiosk:orderList')
 
     def get(self, request, *args, **kwargs):
-       return self.post(request, *args, **kwargs)
+        return self.post(request, *args, **kwargs)
 
 class call(View):
     def get(self, request, *args, **kwargs):
-        queryset = Order.objects.all()
-        if queryset.count() != 1:
-            status = Order.objects.get(id=self.kwargs.get('pk'))
-            status.OrderComplete = True
-            status.save()
+        status = Order.objects.get(id=self.kwargs.get('pk'))
+        status.OrderComplete = True
+        status.save()
 
         return HttpResponseRedirect(reverse('MacKiosk:orderList'))
 
@@ -190,10 +188,13 @@ def orderIngrd(request, inven_id):
     temp = Ingrd.qty_base - Ingrd.qty_now
     base = Ingrd.qty_base
 
-    Ingrd.qty_now = base
-    Ingrd.save()
-
     if temp != 0:
+        Ingrd.qty_now = base
+        d = timedelta(Ingrd.term)
+        Ingrd.exprtdate_old = Ingrd.exprtdate_new
+        Ingrd.exprtdate_new += d
+        Ingrd.save()
+
         add_content = Ingrd.name
         add_spend = temp * Ingrd.price
         add_salesdate = DateFormat(datetime.now()).format('Y-m-d')
