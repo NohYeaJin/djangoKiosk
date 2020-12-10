@@ -14,7 +14,7 @@ class inventoryAdmin (admin.ModelAdmin):
     list_display = ('name', 'qty_base', 'price', 'origin', 'exprtdate_old', 'exprtdate_new')
 
 class revenueAdmin(admin.ModelAdmin):
-    list_display = ('id','content', 'sales', 'spend', 'salesdate')
+    list_display = ('id','order_num','content', 'sales', 'spend', 'salesdate')
 
 
 admin.site.register(Order, orderAdmin)

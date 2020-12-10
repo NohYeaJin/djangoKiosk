@@ -133,6 +133,7 @@
                     {% for revenue in revenues %}
                         <tr align="center">
                             <td>{{ revenue.salesdate|date:"o년 m월 j일" }}</td>
+                            <td>{{ revenue.order_num }}</td>
                             <td>{{ revenue.id }}</td>
                             <td>{{ revenue.content }}</td>
                             <td>{{ revenue.sales }}</td>

@@ -73,7 +73,7 @@ class orderCompV(DeleteView):
 
     def get(self, request, *args, **kwargs):
         o_qs = Order.objects.get(id=self.kwargs.get('pk'))
-        r_qs = Revenue(content=o_qs.OrderMenu, spend=0, sales=o_qs.OrderPrice, salesdate=o_qs.OrderDate)
+        r_qs = Revenue(order_num = o_qs.OrderNum ,content=o_qs.OrderMenu, spend=0, sales=o_qs.OrderPrice, salesdate=o_qs.OrderDate)
         r_qs.save()
         return self.post(request, *args, **kwargs)
 

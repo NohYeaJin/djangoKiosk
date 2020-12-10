@@ -4,12 +4,11 @@ import django
 
 from django.db import models
 
-#메뉴(판매자쪽 앱으로 보내는건 어떨까)
+#메뉴(id,메뉴이름,메뉴 가격, 메뉴 이미지, 카테고리)
 class Menus(models.Model):
     id = models.AutoField(primary_key=True)
     MenuName = models.CharField('MenuName', max_length=50)
     MenuPrice = models.IntegerField('MenuPrice')
-    #image = models.ImageField(upload_to='djangoProject/MacKiosk/static/images/')
     image = models.ImageField(upload_to='MacKiosk/static/images/', default=None)
     CATEGORIES = {
         ('single', 'Single'),
@@ -29,7 +28,7 @@ class Menus(models.Model):
 
 
 
-#장바구니
+#장바구니(id, 들어간 메뉴 이름, 메뉴 수량, 메뉴 가격)
 class Cart(models.Model):
 
     id = models.AutoField(primary_key=True)
@@ -98,11 +97,10 @@ class Inventory(models.Model):
 class Revenue(models.Model):
 
     id = models.AutoField(primary_key=True)
+    order_num = models.IntegerField('Order_Num',default = 0)
     content = models.CharField('Content', max_length=50)
     sales = models.IntegerField('Sales', blank=True, default=0)
     spend = models.IntegerField('Spend', blank=True, default=0)
-    #netprofit = models.IntegerField('NetProfit')
-    #saleshistory = models.
     salesdate = models.DateField('SalesDate', default=0000 - 00 - 00) #클래스 다이어그램에는 saleshistory로 쓰려고 했으나..
                                             #리스트로 구현이 어렵기에 그냥 date로 하는 것은 어떨지..
 
