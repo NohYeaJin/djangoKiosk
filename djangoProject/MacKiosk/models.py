@@ -97,7 +97,7 @@ class Inventory(models.Model):
 class Revenue(models.Model):
 
     id = models.AutoField(primary_key=True)
-    order_num = models.IntegerField('Order_Num',default = 0)
+    order_num = models.IntegerField('order_num',default = 0)
     content = models.CharField('Content', max_length=50)
     sales = models.IntegerField('Sales', blank=True, default=0)
     spend = models.IntegerField('Spend', blank=True, default=0)
