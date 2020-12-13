@@ -57,22 +57,10 @@ class Order(models.Model):
     def __str__(self):
         return self.OrderMenu
 
-
-    def get_order_num(self):
-        return self.OrderNum
-
-    def get_order_qty(self):
-        return self.OrderQty
-
-    def get_order_menu(self):
-        return self.OrderMenu
-
-    def get_order_date(self):
-        return self.OrderDate
-
     class Meta:
      managed = False
      db_table = 'orders'
+
 
 #재고(판매자쪽 앱)
 class Inventory(models.Model):

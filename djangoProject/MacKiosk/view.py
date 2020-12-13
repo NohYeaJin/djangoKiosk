@@ -15,11 +15,11 @@ from datetime import datetime, timedelta
 from random import *
 
 
-
+#메인 화면 렌더링
 def index(request):
     return render(request, 'index2.html')
 
-
+#매인 화면 카테고리별로 분류
 def menuSelect(request, show='default'):
     total_price = 0
     c_qs = Cart.objects.all()
@@ -35,17 +35,18 @@ def menuSelect(request, show='default'):
 
     return render(request, 'index(example).html', context)
 
-
+#수량 선택 페이지
 def howmany(request, menu_id):
     temp = Menus.objects.get(id=menu_id)
     context = {'menu': temp}
     return render(request, 'howmany(example).html', context)
 
 
-
+#결제 수단을 묻는 페이지
 def selectPay(request):
     return render(request,'index3.html')
 
+#장바구니 페이지
 def basket(request):
     total_price = 0
     c_qs = Cart.objects.all()
@@ -55,18 +56,20 @@ def basket(request):
     context = {'cart_list': cart_list, 'total_price':total_price}
     return render(request, 'basket.html', context)
 
-
+#현금을 넣어달라는 화면
 def inputcash(request):
     return render(request,'inputcash.html')
 
+#카드를 삽입해달라는 화면
 def inputcard(request):
     return render(request,'inputcard.html')
 
-
+#판매자 view의 들어온 주문 목록들이 출력되는 페이지
 class orderList(ListView):
     model = Order
     template_name='orderlist.html'
 
+#메뉴 판매 완료 후 주문이 매출에 수입으로 들어가는 과정 
 class orderCompV(DeleteView):
     model = Order
     success_url = reverse_lazy('MacKiosk:orderList')
@@ -77,6 +80,7 @@ class orderCompV(DeleteView):
         r_qs.save()
         return self.post(request, *args, **kwargs)
 
+#판매자가 주문 취소
 class orderCancV(DeleteView):
     model = Order
     success_url=reverse_lazy('MacKiosk:orderList')
@@ -84,6 +88,7 @@ class orderCancV(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
+#판매자가 조리 완료 후 고객 호출
 class call(View):
     def get(self, request, *args, **kwargs):
         status = Order.objects.get(id=self.kwargs.get('pk'))
@@ -92,41 +97,43 @@ class call(View):
 
         return HttpResponseRedirect(reverse('MacKiosk:orderList'))
 
+#고객 호출 리스트
 class callList(ListView):
     model = Order
    # queryset = Order.objects.filter(OrderComplete=True)
     template_name='call_list.html'
 
+#주문번호 출력
 def showOrderNum(request, cus_num):
     o_qs = Order.objects.get(OrderNum=cus_num)
     context = {'o_qs': o_qs}
     return render(request, 'complete.html', context)
 
+#Cart의 주문 정보를 Order로 옮김
 def complete(request):
     c_qs = Cart.objects.all()
-    #Cart의 주문 정보를 Order로 옮김
     num = randint(100, 1000)
     for i in c_qs:
-
         o_qs = Order(OrderMenu=i.CartMenu, OrderQty=i.CartQty, OrderDate=datetime.today(),OrderNum=num,
                       OrderPrice=i.CartPrice)
         o_qs.save()
     c_qs.delete()
-    #o_qs = Orders(OrderNum=cus_num, OrderQty=c_qs.CartQty, OrderMenu=c_qs.CartMenu, OrderDate=datetime.today(), OrderPrice=c_qs.CartPrice)
-    context = {'o_qs': o_qs}  # {{o_qs.OrderNum}} 형식으로 html에서 게시(확인필요)
+    context = {'o_qs': o_qs}  # {{o_qs.OrderNum}} 형식으로 html에서 게시
     return render(request, 'complete.html', context)
 
 
-
+#장바구니 초기화(장바구니 화면에서)
 def reset(request):
     c_qs = Cart.objects.all()
     c_qs.delete()
     return HttpResponseRedirect(reverse('MacKiosk:basket'))
 
+#장바구니 초기화(메인 메뉴에서)
 def reset2(request):
     c_qs = Cart.objects.all()
     c_qs.delete()
     return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
+
 #장바구니에서 메뉴 취소
 def cancelMenu(request, cart_id):
     #Cart DB에서 메뉴 삭제
@@ -147,6 +154,7 @@ def addCart(request):    #선택한 메뉴 기준
 
     return HttpResponseRedirect(reverse('MacKiosk:menuSelect'))
 
+#수익 계산
 def revenue(request):
     if request.method == 'GET':
         temp = Revenue.objects.all().order_by('-id', 'salesdate')
@@ -177,12 +185,13 @@ def revenue(request):
         context = {'revenues': temp, 'sales':sales, 'spend':spend, 'profit':profit}
         return render(request, 'revenue.html', context)
 
-
+#재고 관리
 def inventory(request):
     temp = Inventory.objects.all()
     context = {'inventories': temp}
     return render(request, 'inventory.html', context)
 
+#재고 발주
 def orderIngrd(request, inven_id):
     Ingrd = Inventory.objects.get(id=inven_id)
     temp = Ingrd.qty_base - Ingrd.qty_now
@@ -203,6 +212,7 @@ def orderIngrd(request, inven_id):
         add.save()
 
     return redirect('MacKiosk:inventory')
+
 
 class managerMenu(ListView):
     model = Menus
