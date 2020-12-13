@@ -67,10 +67,8 @@ class Inventory(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField('IngrdName', max_length=50)
     qty_base = models.IntegerField('IngrdQtybase')
-    qty_now = models.IntegerField('IngrdQtynow')
     price = models.IntegerField('IngrdPrice')
     origin = models.CharField('IngrdOrigin', max_length=50)
-    exprtdate_old = models.DateTimeField('ExprtDate_old', default=datetime.now())
     exprtdate_new = models.DateTimeField('ExprtDate_new', default=datetime.now())
     term = models.IntegerField('Term', default=10)
 

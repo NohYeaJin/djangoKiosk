@@ -194,22 +194,17 @@ def inventory(request):
 #재고 발주
 def orderIngrd(request, inven_id):
     Ingrd = Inventory.objects.get(id=inven_id)
-    temp = Ingrd.qty_base - Ingrd.qty_now
     base = Ingrd.qty_base
+    d = timedelta(Ingrd.term)
+    Ingrd.exprtdate_new += d
+    Ingrd.save()
 
-    if temp != 0:
-        Ingrd.qty_now = base
-        d = timedelta(Ingrd.term)
-        Ingrd.exprtdate_old = Ingrd.exprtdate_new
-        Ingrd.exprtdate_new += d
-        Ingrd.save()
+    add_content = Ingrd.name
+    add_spend = Ingrd.qty_base * Ingrd.price
+    add_salesdate = DateFormat(datetime.now()).format('Y-m-d')
 
-        add_content = Ingrd.name
-        add_spend = temp * Ingrd.price
-        add_salesdate = DateFormat(datetime.now()).format('Y-m-d')
-
-        add = Revenue(content=add_content, spend=add_spend, salesdate=add_salesdate)
-        add.save()
+    add = Revenue(order_num=0, content=add_content, spend=add_spend, salesdate=add_salesdate)
+    add.save()
 
     return redirect('MacKiosk:inventory')
 
