@@ -45,33 +45,7 @@ urlpatterns = [
     path('seller/inventory/', inventory, name='inventory'),
     path('seller/inventory/<int:inven_id>', orderIngrd, name='orderIngrd'),
     path('seller/revenue/', revenue, name='revenue'),
-    path('manager/managerMenu/', managerMenu.as_view(), name='managerMenu'),
-    path('manager/MenuAdd/', MenuAdd.as_view(), name='MenuAdd'),
-    path('manger/MenuDelete/<int:menu_id>/', MenuDelete, name='MenuDelete'),
     ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-'''
-
-    path('kiosk/howmany/<int:menu_id>', howmany, name='howmany'),
-    path('kiosk/basket', toCart, name='toCart'),
-    path('kiosk/quantity/', quantitySelect, name='quantitySelect'),
-    path('kiosk/addCart/', addCart, name='addCart'),
-
-    path('kiosk/toCart/', toCart.as_view(), name='toCart'),
-    path('kiosk/payment/', payment, name='payment'),
-    path('kiosk/chQty/', chQty, name='chQty'),
-    path('kiosk/complete/', complete, name='complete'),
-    path('kiosk/showOrderNum/', showOrderNum, name='showOrderNum'),
-
-    path('seller/postmenu/', postmenu, name='postmenu'),
-    path('seller/callList/', callList.as_view(), name='callList'),
-    path('sellet/orderList/', orderList.as_view(), name='orderList'),
-    path('seller/callCustomer/', callCustomer, name='callCustomer'),
-    path('seller/menuComplete/', menuComplete, name='menuComplete'),
-    path('seller/cancelOrder/', cancelOrder, name='cancelOrder'),
-    path('seller/orderIngrd/', orderIngrd, name='orderIngrd'),
-    path('seller/srchIngrd/', srchIngrd.as_view(), name='srchIngrd'),
-    path('seller/srchTerm/', srchTerm.as_view(), name='srchTerm'),
-'''

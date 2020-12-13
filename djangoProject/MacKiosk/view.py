@@ -214,18 +214,4 @@ def orderIngrd(request, inven_id):
     return redirect('MacKiosk:inventory')
 
 
-class managerMenu(ListView):
-    model = Menus
-    template_name = 'manager_menu.html'
-
-class MenuAdd(CreateView):
-    model = Menus
-    fields = ['MenuName', 'MenuPrice', 'image']
-    template_name = 'manu_add.html'
-    success_url = reverse_lazy('manager_menu.html')
-
-def MenuDelete(request, Mname):
-    m_qs = Menus.objects.get(ManuName=Mname)
-    m_qs.delete()
-    return HttpResponseRedirect(reverse('MacKiosk:managerMenu'))
 
