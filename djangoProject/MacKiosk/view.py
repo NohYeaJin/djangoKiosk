@@ -195,8 +195,9 @@ def inventory(request):
 def orderIngrd(request, inven_id):
     Ingrd = Inventory.objects.get(id=inven_id)
     base = Ingrd.qty_base
+
     d = timedelta(Ingrd.term)
-    Ingrd.exprtdate_new += d
+    Ingrd.exprtdate_new = d + datetime.now()
     Ingrd.save()
 
     add_content = Ingrd.name
